@@ -1426,6 +1426,8 @@ a,button,[role="button"],.choice,.gift,.moon-wrap,.cover-env{touch-action:manipu
 .sm-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px}.sm-tabs .btn{padding:9px 13px;font-size:13.5px}.sm-tabs .btn.on{outline:2px solid #ffd0f0;background:rgba(255,150,220,.28)}
 .lock-q{font-size:17px;line-height:1.6;margin:4px 0 10px}.hint-row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
 .hint{flex:1 1 44%;padding:10px 12px;border-radius:14px;border:1px dashed rgba(235,215,255,.7);background:rgba(255,255,255,.06);color:#fff;font-size:13.5px;text-align:left}.hint.open{border-style:solid;background:rgba(255,150,220,.16)}
+.lock-opts{display:grid;gap:9px;margin:12px 0}.lock-opt{width:100%;text-align:left;padding:13px 15px;border-radius:16px;color:#fff;font-size:15.5px;border:1.5px solid rgba(235,215,255,.6);background:rgba(255,255,255,.08);transition:transform .15s,background .2s,border-color .2s}.lock-opt:active{transform:scale(.98)}.lock-opt.right{background:rgba(116,232,180,.28);border-color:rgba(160,255,210,.95)}.lock-opt.wrong{opacity:.45;text-decoration:line-through}
+.rl-count{margin:6px 2px 0;font-size:12.5px;opacity:.85;text-align:right}
 .thoughts.lock-in{min-height:54px!important;height:54px!important;resize:none;width:100%;margin:6px 0;padding:14px;border-radius:16px;color:#fff;font-size:16px}
 .cpn{display:block;width:100%;margin:8px 0;padding:14px;border-radius:16px;text-align:left;color:#fff;border:1.5px dashed rgba(255,225,245,.85);background:rgba(255,255,255,.07)}.cpn.used{opacity:.7;border-style:solid}
 .gx-img{width:100%;border-radius:16px;margin:8px 0;display:block}
@@ -1525,15 +1527,22 @@ const chapters = [
 <div class="song-card" id="songCard" hidden><div class="song-head"><div class="song-title">🖤 Ishq Hua</div><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div><div class="song-sub">🎶 Tumhara favourite, mere liye bhi</div><div id="songHost"></div><div class="song-note">play dabao, aur mujhe yaad karo 🤍</div></div><button class="back-up" type="button" data-action="backToGifts" id="backToGifts" hidden>↑ wapas gifts par</button>`},
 {label:"Peaceful care corner",render:()=>`
 <div class="eyebrow">slow down, if you want 🌙</div><h2>Abhi bas ek chhota sa pause</h2><p>Tum chaho toh is soft circle ke saath aaram se saans lene ki rhythm follow kar sakti ho. Koi target nahi, koi perfect technique nahi — uncomfortable lage toh normal breathing par laut aao.</p>
-<div class="breath-wrap"><div class="breath-orb" aria-hidden="true"><span>☁️</span></div><p><strong>Saans andar… aur dheere se bahar.</strong></p><p class="tiny">Circle sirf ek gentle visual hai. Apni natural pace par hi raho.</p></div>
-<div class="soft-note">🌷 Paani ka ek sip, shoulders ko relax karna, ya kuch der aaram — inmein se ek chhoti cheez bhi kaafi hai. Rest earn karna nahi padta.</div>`},
+<div class="breath-wrap"><div class="breath-orb" aria-hidden="true"><span>☁️</span></div><p><strong id="breathLbl">Bas circle ko dekho… 🌙</strong></p><p class="tiny">Circle sirf ek gentle visual hai. Apni natural pace par hi raho.</p></div>
+<div class="soft-note">🌷 Paani ka ek sip, shoulders ko relax karna, ya kuch der aaram — inmein se ek chhoti cheez bhi kaafi hai. Rest earn karna nahi padta.</div>
+<p style="margin-top:14px"><strong>Abhi tumhe kya chahiye, jaan?</strong></p>
+<div class="mood-grid care-grid">
+<button class="choice" data-care="water"><span class="emoji">💧</span><strong>Paani ka sip</strong><small>Body ko thoda pyaar</small></button>
+<button class="choice" data-care="shoulders"><span class="emoji">🧘</span><strong>Shoulders dheele</strong><small>30 second ka reset</small></button>
+<button class="choice" data-care="hug"><span class="emoji">🫂</span><strong>Ek tight hug</strong><small>Jitna lamba chaho</small></button>
+<button class="choice" data-care="rest"><span class="emoji">🌙</span><strong>Thoda rest</strong><small>Bina guilt ke</small></button>
+</div><div class="message" id="careMessage" role="status"></div>`},
 {label:"Cute smile corner",render:()=>`
 <div class="eyebrow">smile corner 🧸</div><h2>Ek chhoti si baat sunogi, Riya? 😘</h2><p>Jokes, flirt, compliments ya shayari, jo mann ho chuno aur button dabate jao. Har tap par ek nayi line, sirf meri jaan ke liye. 💗</p>
 <div class="sm-tabs"><button class="btn secondary on" data-st="joke">😂 Jokes</button><button class="btn secondary" data-st="flirt">😘 Flirt</button><button class="btn secondary" data-st="comp">💗 Compliments</button><button class="btn secondary" data-st="shayari">📜 Shayari</button></div>
-<div class="soft-note" id="randomLine" data-rt="d" role="status">Tum meri favourite insaan ho, ye bhoolna mat. 🖤<i class="rl-star" aria-hidden="true"></i></div>
+<div class="soft-note" id="randomLine" data-rt="d" role="status">Tum meri favourite insaan ho, ye bhoolna mat. 🖤<i class="rl-star" aria-hidden="true"></i></div><div class="rl-count" id="rlCount"></div>
 <div class="actions"><button class="btn" data-action="random">Ek aur pyaari baat 🌸</button><button class="btn secondary" data-action="sparkle">Tiny sparkle ✨</button></div>`},
 {label:"Secret lock",render:()=>`
-<div class="eyebrow">sirf meri Riya ke liye 🔐</div><h2>Secret Lock</h2><p>Pyaare se riddles, har ek ke saath 4 hints. Sab khol do aur ek secret surprise tumhara. Galti ho toh koi baat nahi, jaan, main hint dunga 😘</p>
+<div class="eyebrow">sirf meri Riya ke liye 🔐</div><h2>Secret Lock</h2><p>6 pyaari paheliyan, sab sirf tumhare baare me. Answer apne words me likho, aur har paheli ke saath 4 hints hain. Sab khol do aur ek secret surprise tumhara. Galti ho toh koi baat nahi, jaan, hint le lena 😘</p>
 <div class="soft-note" id="lockBox" role="status"></div>`},
 {label:"Your thoughts",render:()=>`
 <div class="eyebrow">sirf mere liye 💌</div><h2>Mujhe kuch kehna hai 💭</h2><p>Jo bhi mann me ho, pyaar, shikayat ya kuch cute, yahan likho. Phir "Mujhe bhej do" dabao, wo seedha mere WhatsApp par khulega.</p>
@@ -1584,7 +1593,7 @@ joke:["Momos ne chutney se kaha: tum itni teekhi kyun ho? Chutney: Riya jaisi ho
 flirt:["Black tum par itna suit karta hai ki baaki saare colours jealous ho gaye 🖤","Tum smile karti ho toh meri battery 100% ho jaati hai, aur akal 0% 😵‍💫","Google Maps ko mera rasta nahi pata, par mere dil ko pata hai wo tumhare paas jaata hai 🧭","Mujhe momos pasand hain, par tumhe dekhte hi meri bhookh tumhari taraf shift ho jaati hai 😏🥟","Tum meri favourite notification ho 🔔💗","Princess, aaj tum bohot cute lag rahi ho. Pata hai na? 🥰","Mera dil bola: next stop? Dimaag bola: Riya. Dono ka vote ek hi tha 🚉","Tumhare ek line ke reply se mera poora din ban jaata hai, so please bol do miss you 😌","Main tumhe impress karne ki koshish karta hoon, tum bina kuch kiye sab jeet jaati ho 🏆","Tum chai ho toh main hamesha late rahunga, kyunki tumhe pee ke hi jaunga ☕😌"],
 comp:["Tumhari hasi duniya ki sabse pyaari awaaz hai 🎶","Tum itni sundar ho ki aaina bhi sharma jaata hoga 🪞","Tumhara dil sone ka hai, aur tumhari baatein usme jade heere 💎","Tum jahan hoti ho wahan ki hawa bhi thodi softer ho jaati hai 🌸","Tum sirf pyaari nahi, strong bhi ho, aur ye mujhe sabse zyada pasand hai 💪🖤","Tumhari aankhon me ek alag chamak hai, jise dekh kar main bhool jaata hoon ki kya bol raha tha ✨","Tum meri jaan ho, meri princess ho, aur meri favourite insaan ho 👑","Tum mile ho toh lagta hai meri saari duayein ek saath sun li gayi 🙏","Tumhari simplicity me jo jaadu hai, wo kisi makeup me nahi 🥺","Rasmalai se bhi meethi ho tum, aur wo bhi tumse jealous hai 🍮"],
 shayari:["Chand bhi sharma jaaye jab tum muskurati ho, ye dil bas tumhara naam gungunata hai 🌙","Tum mile toh laga adhoori kitaab ko uska sabse pyaara panna mil gaya 📖","Duniya ki bheed me bhi mujhe sirf tum dikhti ho, ye ishq nahi toh aur kya hai, jaan? 🖤","Raaton ki neend ki wajah tumhari yaadein, aur subah ki muskaan ki wajah bhi tum ☀️","Na gulaab chahiye na chaand sitare, bas tum rehna mere paas, har janam me 🌹","Teri baaton me jo sukoon hai wo kisi dawa me nahi, tera saath hi meri har dua ka jawab hai 🤲","Tumhare saath chalna ho toh manzil ki fikr kaun kare, har rasta khoobsurat lagta hai 🛣️","Kisi ne poocha mohabbat ka matlab kya hai, maine tumhara naam liya aur baat khatam ho gayi 💗","Jab bhi tumhe dekhta hoon dil kehta hai: bas yahin ruk jao, waqt bhi aur tum bhi ⏳","Tum meri duniya ho, meri pehchaan ho, meri jaan ho 🖤"]};
-let lines=SETS.joke;window.__setLines=k=>{lines=SETS[k]||lines;};
+let lines=SETS.joke;window.__setLines=k=>{lines=SETS[k]||lines;window.__curSet=k;};
 
 
 
@@ -1966,7 +1975,17 @@ panel.addEventListener('click',e=>{
  if(b.dataset.action==='backToMoods'){const g=panel.querySelector('.mood-grid');if(g)glideTo(g,'start');return;}
  if(b.dataset.action==='openLetter'){startLetter();return;}
   if(b.dataset.action==='skipLetter'){finishLetter();return;}
-  if(b.dataset.action==='random'){let line=lines[Math.floor(Math.random()*lines.length)];const el=document.getElementById('randomLine');if(lines.length>1&&el.textContent===line)line=lines[(lines.indexOf(line)+1)%lines.length];el.removeAttribute('data-rt');void el.offsetWidth;el.dataset.rt=lines.indexOf(line)%8;revealWords(el,line);}
+  if(b.dataset.action==='random'){const el=document.getElementById('randomLine');if(el){
+   const key=window.__curSet||'joke';el.__dk=el.__dk||{};
+   let d=el.__dk[key];if(!d){d=el.__dk[key]={left:lines.map((_,i)=>i),n:0};for(let i=d.left.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[d.left[i],d.left[j]]=[d.left[j],d.left[i]];}}
+   const cnt=document.getElementById('rlCount');el.removeAttribute('data-rt');void el.offsetWidth;el.dataset.rt='d';
+   if(d.left.length===0){revealWords(el,'Is tab ki saari baatein ho gayi, jaan 🖤 Ab koi doosra tab chuno, ya aage badho.');b.disabled=true;b.textContent='Saari baatein ho gayi 🖤';}
+   else{const idx=d.left.pop();d.n++;el.dataset.rt=idx%8;revealWords(el,lines[idx]);
+    try{el.animate([{transform:'translateY(14px) scale(.96)',opacity:.3},{transform:'none',opacity:1}],{duration:560,easing:'cubic-bezier(.22,1,.36,1)'});}catch(_){}
+    try{const em={joke:['😂','🥟','🤭'],flirt:['😘','💗','😏'],comp:['💗','✨','🌸'],shayari:['📜','🌙','🌹']}[key]||['💗'];sprinkle(em);}catch(_){}
+    if(d.left.length===0){b.textContent='Ye aakhri thi 🖤';}else b.textContent='Ek aur pyaari baat 🌸';b.disabled=false;}
+   if(cnt)cnt.textContent=d.n+' / '+lines.length;
+  }}
  if(b.dataset.action==='sparkle')sprinkle(['💗','✨','🌸','♡']);
  if(b.dataset.action==='clearThoughts'){document.getElementById('thoughts').value='';const m=document.getElementById('thoughtMessage');m.textContent='Text clear ho gaya. 🌷';m.classList.add('show');}
  if(b.dataset.action==='saveNotice'){const m=document.getElementById('thoughtMessage');m.textContent='Yeh text isi page par tab tak rahega jab tak tum page refresh ya close nahi karti. Kahin send ya permanently save nahi hota. 🤍';m.classList.add('show');}
@@ -2293,22 +2312,25 @@ function confetti(n){var ch=['🖤','💗','✨','🥳','🌸','💜'];for(var i
 function tick(){var el=document.getElementById('dayLive');if(!el)return;var d=Math.max(0,Date.now()-MET.getTime()),D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24,M=Math.floor(d/6e4)%60,S=Math.floor(d/1e3)%60;el.textContent=D+' din, '+H+' ghante, '+M+' min, '+S+' sec';var b=document.getElementById('bdayLive');if(b){var n=new Date(),t0=new Date(n.getFullYear(),n.getMonth(),n.getDate()),t=new Date(n.getFullYear(),BD[0],BD[1]);if(t<t0)t=new Date(n.getFullYear()+1,BD[0],BD[1]);var k=Math.round((t-t0)/864e5);b.textContent=k===0?'Aaj Riya ka birthday hai! 🎂🥳':'Riya ke birthday me '+k+' din baaki 🎂';}}
 setInterval(tick,1000);
 var Q=[
-{q:'Aisi kaun si cheez hai jo kuch kahe bina bhi kisi ka din thoda better bana sakti hai?',h:['Ye chehre par aati hai','Iske aate hi mood happy ho jaata hai','Ye ek expression hai','4 letters ka (Hindi me)'],a:['hasi','haasi','smile','muskaan','muskurahat'],s:'hasi 😊'},
-{q:'Garam garam, bhaap me bani, chutney ke saath, aur Riya ki favourite. Kya hai?',h:['Isse steam kiya jaata hai','Ye andar se bhara hota hai','Riya ki favourite food','5 letters'],a:['momos','momo'],s:'momos 🥟'},
-{q:'Wo rang jo raat jaisa hai, aur Riya par sabse zyada suit karta hai?',h:['Raat ka rang','Riya ka favourite colour','Isse baaki sab colours jealous hain','5 letters (English me)'],a:['black','kala','kaala'],s:'black 🖤'},
-{q:'Kaunsa gaana Riya ka favourite hai, jise sunte hi dil pighal jaata hai?',h:['Ye ek romantic gaana hai','Pyaar ka ehsaas','Do words ka naam','Ishq ___'],a:['ishqhua'],s:'Ishq Hua 🎶'},
-{q:'Hum dono pehli baar kis tareekh ko mile the?',h:['Mahina jab Independence Day aata hai','Tareekh 1 aur 5 se bani hai','August ka beech','15 ___'],a:['15'],s:'15 August 🖤'},
-{q:'Is duniya ki sabse pyaari, sabse cute aur meri favourite ladki kaun hai?',h:['Wo abhi ye website khol kar baithi hai','Uska naam 4 letters ka hai','R se shuru hota hai','Ri___'],a:['riya','tum','tumhi'],s:'Riya 🖤'}];
+{q:'Aisi kaun si cheez hai jo tumhare chehre par rehti hai, jisme main kho jaata hoon, aur jo bina ek lafz bole sab kuch keh deti hai?',h:['Ye khud ko kabhi nahi dekh paati, phir bhi sabse zyada yahi dekhti hai','Isme na awaaz hai na shabd, phir bhi ye poori kahaaniyan suna deti hai','Chehre ka wo hissa jisse log dil ka haal padh lete hain','Ye do hain, palkein inki rakhwali karti hain aur kajal inhe sajata hai'],a:['aankhein','aankhen','ankhen','ankhein','aankh','ankh','eyes'],s:'aankhein 👀'},
+{q:'Wo kaun si cheez hai jise sunte hi meri saari thakaan utar jaati hai? Tum use bolti ho, par wo kaanon se hoti hui seedha mere dil tak pahunch jaati hai.',h:['Ise na pakda ja sakta hai, na dekha ja sakta hai, par mehsoos zaroor hoti hai','Door hone par bhi ye hume ek dusre ke paas le aati hai','Raat ko call par ye sabse zyada jaagti hai','Gaane me sur ke saath yahi chalti hai, aur tum jab bolti ho toh yahi nikalti hai'],a:['awaaz','aawaz','avaaz','awaz','aavaz','voice'],s:'awaaz 🎶'},
+{q:'Mere seene me ek cheez hai jo tumhe dekhte hi tez dhadakne lagti hai, aur tumhari ek baat se bhaari ya halki ho jaati hai. Batao, wo kya hai?',h:['Ye bina thake din raat kaam karta hai, kabhi chhutti nahi leta','Log kehte hain ki jab ye aur dimaag ladte hain toh jeet aksar isi ki hoti hai','Pyaar ka sabse purana address','Isi ke liye log "___ se kaho" bolte hain'],a:['dil','heart'],s:'dil 💗'},
+{q:'Main tumhe pyaar se ek mithai ke naam se bulata hoon. Wo doodh me doobi hoti hai, narm hoti hai, thandi hoti hai aur bohot meethi. Tum bhi bilkul waisi ho. Bolo, wo mithai kaun si hai?',h:['Ye khaane wali cheez hai, aur tum jaisi hi narm hai','Isme paneer jaisi chhoti chhoti tikkiyan hoti hain','Upar se kesar aur pista dalte hain, aur thandi hi achhi lagti hai','Naam me "ras" bhi hai aur "malai" bhi'],a:['rasmalai','rasmalayi','rassmalai'],s:'rasmalai 🍮'},
+{q:'Saal ka wo ek din jab main sabse zyada excited hota hoon, kyunki wo din sirf tumhara hota hai. Us mahine ke 24 din guzar chuke hote hain aur sirf 6 din baaki bachte hain. Wo tareekh kaun si hai?',h:['Ye din saal me sirf ek baar aata hai','Is din cake kat-ta hai aur sab tumhe wish karte hain','Ye us mahine me aata hai jisme 31 din hote hain','Hum pehli baar 15 ko mile the, ye usse theek 10 din baad aata hai']
+,a:['25august','25aug','august25','25agast','25thaugust'],s:'25 August 🎂'},
+{q:'Teen chhote shabd, jinhe bolna aasaan hai par nibhana sabse mushkil. Main tumse ye har din kehna chahta hoon, aur badle me bas ek "hamesha" sunna chahta hoon. Wo teen shabd kaun se hain?',h:['Ye teen shabdon ka ek jaadu hai','Isme "main" bhi hai aur "tum" bhi','Letter ke aakhir me bhi yehi likha tha','English me bolte hain: I ___ you'],a:['iloveyou','loveyou','ilu','iluu'],s:'I love you 🖤'}
+];
 var W=['Hehe, close! Ek aur try karo jaan 🥺','Arre nahi baby, dimaag ki batti jalao 💡','Hint dekh lo na princess 😏','Uff, cute galti 🙈'],R=['Yesss! Meri smart Riya 🥳','Wah wah! Tum to genius ho betuu 🖤','Correct! Reward: ek virtual kiss 😘','Sahi pakda, jaan! 💗'];
 var qi=0,wr=0,state='ask';
 function nz(x){return String(x).toLowerCase().replace(/[^a-z0-9]/g,'');}
 function draw(){var box=document.getElementById('lockBox');if(!box)return;
  if(qi>=Q.length){box.innerHTML='<p><strong>🔓 Secret unlock ho gaya!</strong></p><p>Riya, ye website sirf ek bahana thi. Mujhe bas tumse ye kehna tha: tum meri duniya ho, meri jaan. Reward: aaj call par ek tight virtual hug, aur momos treat mujhse maango haq se 🖤🥟</p>';return;}
  var q=Q[qi],h='';for(var k=0;k<4;k++)h+='<button class="hint" type="button" data-hint="'+k+'">Hint '+(k+1)+' 🔒</button>';
- box.innerHTML='<p><strong>Riddle '+(qi+1)+' of '+Q.length+' 🔐</strong></p><div class="lock-q">'+q.q+'</div><div class="hint-row">'+h+'</div><textarea class="thoughts lock-in" id="lockIn" placeholder="Answer likho, jaan…" aria-label="Answer"></textarea><div class="actions"><button class="btn" data-action="lockCheck" type="button">Unlock 🔓</button></div><div id="lockMsg" style="margin-top:8px;font-weight:600"></div>';state='ask';}
-function check(){var inp=document.getElementById('lockIn'),m=document.getElementById('lockMsg');if(!inp||!m)return;var u=nz(inp.value);if(!u)return;var q=Q[qi];
- if(q.a.some(function(v){return u===v||u.indexOf(v)>-1;})){m.textContent=R[qi%R.length];confetti(24);qi++;wr=0;setTimeout(draw,1500);}
- else{wr++;if(wr>=3){m.textContent='Koi baat nahi baby, answer hai: '+q.s+' 🥹 Chalo next!';qi++;wr=0;setTimeout(draw,2600);}else m.textContent=W[Math.floor(Math.random()*W.length)];}}
+ box.innerHTML='<p><strong>Paheli '+(qi+1)+' of '+Q.length+' 🔐</strong></p><div class="lock-q">'+q.q+'</div><div class="hint-row">'+h+'</div><textarea class="thoughts lock-in" id="lockIn" placeholder="Answer likho, jaan…" aria-label="Answer"></textarea><div class="actions"><button class="btn" data-action="lockCheck" type="button">Unlock 🔓</button></div><div id="lockMsg" style="margin-top:8px;font-weight:600"></div>';state='ask';}
+var lockBusy=false;
+function check(){var inp=document.getElementById('lockIn'),m=document.getElementById('lockMsg');if(!inp||!m||lockBusy||!Q[qi])return;var u=nz(inp.value);if(!u)return;var q=Q[qi];
+ if(q.a.some(function(v){return u===v||u.indexOf(v)>-1;})){lockBusy=true;m.textContent=R[qi%R.length];confetti(24);qi++;wr=0;setTimeout(function(){lockBusy=false;draw();},1500);}
+ else{wr++;if(wr>=3){lockBusy=true;m.textContent='Koi baat nahi baby, answer hai: '+q.s+' 🥹 Chalo next!';qi++;wr=0;setTimeout(function(){lockBusy=false;draw();},2600);}else m.textContent=W[Math.floor(Math.random()*W.length)];}}
 var noN=0;function runNo(e){var b=document.getElementById('noBtn');if(!b)return;if(e&&e.preventDefault)e.preventDefault();noN++;b.style.transform='translate('+((Math.random()-.5)*Math.min(240,innerWidth-140))+'px,'+((Math.random()-.5)*90)+'px)';var T=['No 🙈','Pakka? 🥺','Soch lo na 😭','Haan bol do 🥹','Bhaag gaya 😂'];b.textContent=T[Math.min(noN,T.length-1)];}
 ['pointerdown','mouseover','touchstart'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target&&e.target.id==='noBtn')runNo(e);},{passive:false});});
 var C=['1 free hug 🫂','1 momos date 🥟','1 long drive 🚗','1 maafi, no questions asked 🥺','1 din sirf tumhari marzi 👑'],OW=[['Jab mujhe miss karo 🥺','Aankhein band karo, ek gehri saans lo, aur wo pal yaad karo jab hum pehli baar mile the. Main bhi wahi soch raha hoon. Ab mujhe call karo 📞🖤'],['Jab gussa aaye 😤','Pehle ek glass paani, phir 10 tak ginti, phir mujhe sab bata do. Main sununga. Aur galti meri hui toh maafi coupon use karna 😅🖤'],['Jab neend na aaye 🌙','Phone ke us paar se main tumhe lori sunaunga (bad voice, but with love). Tab tak soch lo, kal ka din aur bhi pyaara hoga 🌙'],['Jab bore ho 🥱','Smile Corner kholo, ek joke padho aur mujhe bhejo. Dekhte hain kaun zyada lame joke bhejta hai 😂']];
@@ -2319,7 +2341,8 @@ window.__giftExtra=function(n){var x=document.getElementById('giftExtra');if(!x)
  x.innerHTML=h;};
 document.addEventListener('click',function(e){var b=e.target.closest?e.target.closest('button,a'):null;if(!b)return;
  if(b.id==='noBtn'){e.preventDefault();return;}
- var st=b.getAttribute('data-st');if(st&&window.__setLines){window.__setLines(st);[].forEach.call(document.querySelectorAll('[data-st]'),function(x){x.classList.toggle('on',x===b);});var r=document.querySelector('[data-action="random"]');if(r)r.click();return;}
+ var st=b.getAttribute('data-st');if(st&&window.__setLines){window.__setLines(st);[].forEach.call(document.querySelectorAll('[data-st]'),function(x){x.classList.toggle('on',x===b);});var r=document.querySelector('[data-action="random"]');if(r){r.disabled=false;r.textContent='Ek aur pyaari baat 🌸';r.click();}return;}
+ var op=b.getAttribute('data-opt');if(op!==null){pick(+op,b);return;}
  var hi=b.getAttribute('data-hint');if(hi!==null&&Q[qi]){b.textContent=Q[qi].h[+hi];b.classList.add('open');return;}
  if(b.getAttribute('data-cpn')){b.classList.add('used');b.textContent='✅ Redeemed — screenshot bhej do baby 🥰';confetti(14);return;}
  var ow=b.getAttribute('data-ow');if(ow!==null){var t=document.getElementById('owText');if(t){t.hidden=false;t.textContent=OW[+ow][1];}return;}
@@ -2331,6 +2354,34 @@ document.addEventListener('click',function(e){var b=e.target.closest?e.target.cl
 document.addEventListener('keydown',function(e){if(e.target&&e.target.id==='lockIn'&&e.key==='Enter'){e.preventDefault();check();}});
 function init(){if(document.getElementById('lockBox')){qi=0;wr=0;draw();}tick();}
 new MutationObserver(init).observe(panel,{childList:true});init();
+})();
+</script>
+<script>
+/* chapter 5: breathing text synced to the orb + care options */
+(function(){
+var careText={
+water:'Ek glass paani abhi, jaan. Dheere dheere sip lo. Tum sabke liye itna sochti ho, par apni body ko paani dena bhool jaati ho. Aaj ye ek kaam mere liye kar do 💧',
+shoulders:'Kandhe kaano se door karo, jaw dheeli karo, aur mutthi khol do. Dekho, kitna bojh tum bina bataye uthaye ghoom rahi thi. Ab ek gehri saans lo aur chhod do 🤍',
+hug:'Aao, yahan aao. Ek tight wala hug, jitna lamba tum chaho. Main kuch nahi poochunga, bas pakde rahunga jab tak tum kahogi 🫂',
+rest:'Aankhein band karo, phone ek taraf rakh do. Duniya 10 minute tumhare bina bhi chal legi, main sab sambhal lunga. Rest ke liye kisi reason ki zaroorat nahi, princess 🌙'};
+var tone={water:'happy',shoulders:'khush',hug:'alone',rest:'tired'};
+var tm=null,iv=null;
+function stop(){clearTimeout(tm);clearInterval(iv);tm=iv=null;}
+function start(){
+ var l=document.getElementById('breathLbl');if(!l||l.__go)return;l.__go=true;stop();
+ var inh=true;
+ function setL(){var e=document.getElementById('breathLbl');if(!e){stop();return;}e.textContent=inh?'Saans andar… dheere dheere 🌬️':'Ab bahar… aaram se 💨';inh=!inh;}
+ tm=setTimeout(function(){setL();iv=setInterval(setL,2500);},2900);
+}
+var p=document.getElementById('panel');
+if(p)new MutationObserver(function(){start();}).observe(p,{childList:true});
+document.addEventListener('click',function(e){
+ var b=e.target.closest?e.target.closest('[data-care]'):null;if(!b)return;
+ var k=b.getAttribute('data-care'),el=document.getElementById('careMessage');if(!el||!careText[k])return;
+ try{showTouch(el,careText[k],tone[k]);}catch(_){el.textContent=careText[k];el.classList.add('show');}
+ var sm=b.querySelector('small');if(sm)sm.textContent='ho gaya 💗';
+ try{glideTo(el,'center');}catch(_){}
+});
 })();
 </script>
 </body>
