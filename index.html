@@ -342,7 +342,7 @@ h1.hero-h{font-size:clamp(40px,10.5vw,56px);line-height:1.08;animation:heroGlow 
 /* ch7 notebook unrolls + soft glow */
 .panel[data-ch="7"] .thoughts{animation:unroll 1.1s cubic-bezier(.22,1,.36,1) .6s backwards,boxGlow 2.2s ease-in-out 1.7s 2}
 /* ch8 last note: glowing heart */
-.panel[data-ch="8"] .final-heart{animation:finalIn 1.7s cubic-bezier(.22,1,.36,1) .3s both,heartGlow 3s ease-in-out 2s infinite alternate}
+.panel[data-ch="10"] .final-heart{animation:finalIn 1.7s cubic-bezier(.22,1,.36,1) .3s both,heartGlow 3s ease-in-out 2s infinite alternate}
 /* falling / rising particles */
 .fxrain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:8}
 .fxp{position:absolute;opacity:0;will-change:transform;text-shadow:0 0 10px rgba(255,190,240,.7)}
@@ -1435,8 +1435,70 @@ a,button,[role="button"],.choice,.gift,.moon-wrap,.cover-env{touch-action:manipu
 .prop-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center;min-height:120px}#noBtn{transition:transform .25s cubic-bezier(.3,1.4,.5,1)}.prop-res{display:flex;flex-direction:column;align-items:center;gap:10px}
 .message[data-tone="khush"]{--tc:255,214,90}.message[data-tone="miss"]{--tc:255,140,210}.message[data-tone="g8"]{--tc:255,120,170}.message[data-tone="g9"]{--tc:255,190,120}.message[data-tone="g10"]{--tc:150,200,255}
 .message:is([data-tone="khush"],[data-tone="miss"],[data-tone="g8"],[data-tone="g9"],[data-tone="g10"]){background:linear-gradient(135deg,rgba(var(--tc),.40),rgba(var(--tc),.22))!important;border-color:rgba(var(--tc),.95)!important;box-shadow:0 0 22px rgba(var(--tc),.55),inset 0 0 24px rgba(var(--tc),.24),inset 0 1px 0 rgba(255,255,255,.30)!important}
-.message[data-tone="g2"]{--tc:236,236,250;background:linear-gradient(135deg,rgba(6,5,14,.82),rgba(34,30,52,.66))!important;border-color:rgba(238,238,252,.95)!important;box-shadow:0 0 22px rgba(236,236,255,.5),inset 0 0 26px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.35)!important}.message[data-tone="g2"]::before{background:linear-gradient(120deg,rgba(255,255,255,.10),transparent 60%)}
-.gift[data-gift="2"]{background:linear-gradient(135deg,rgba(0,0,0,.55),rgba(40,36,60,.4))!important;border-color:rgba(235,235,250,.85)!important}
+.message[data-tone="g2"]{--tc:178,130,255;background:linear-gradient(135deg,rgba(var(--tc),.42),rgba(var(--tc),.22))!important;border-color:rgba(var(--tc),.95)!important;box-shadow:0 0 22px rgba(var(--tc),.55),inset 0 0 24px rgba(var(--tc),.24),inset 0 1px 0 rgba(255,255,255,.30)!important}
+
+
+/* CARE CORNER (chapter 5): coloured boxes + coloured messages */
+.care-grid .choice.picked{box-shadow:0 0 22px rgba(var(--tc),.65),inset 0 1px 0 rgba(255,255,255,.25)!important;background:linear-gradient(135deg,rgba(var(--tc),.55),rgba(var(--tc),.24))!important;border:1.5px solid rgba(var(--tc),.92)!important}
+.care-grid .choice.picked:hover,.care-grid .choice.picked:active{background:linear-gradient(135deg,rgba(var(--tc),.48),rgba(var(--tc),.2))!important}
+.care-grid .choice[data-care="water"]{--tc:110,205,255}.care-grid .choice[data-care="shoulders"]{--tc:130,235,185}.care-grid .choice[data-care="hug"]{--tc:255,130,190}.care-grid .choice[data-care="rest"]{--tc:255,200,80}
+.message[data-tone="cw"]{--tc:110,205,255}.message[data-tone="cs"]{--tc:130,235,185}.message[data-tone="ch"]{--tc:255,130,190}.message[data-tone="cr"]{--tc:255,200,80}
+.message:is([data-tone="cw"],[data-tone="cs"],[data-tone="ch"],[data-tone="cr"]){background:linear-gradient(135deg,rgba(var(--tc),.40),rgba(var(--tc),.22))!important;border-color:rgba(var(--tc),.95)!important;box-shadow:0 0 22px rgba(var(--tc),.55),inset 0 0 24px rgba(var(--tc),.24),inset 0 1px 0 rgba(255,255,255,.30)!important}
+
+/* ===== COLOURED GIFT + MOOD BOXES, REASONS, PLAN, EFFECTS ===== */
+.gift[data-gift="0"]{--tc:255,140,210}.gift[data-gift="1"]{--tc:255,160,60}.gift[data-gift="2"]{--tc:178,130,255}.gift[data-gift="3"]{--tc:60,214,208}.gift[data-gift="4"]{--tc:255,214,90}.gift[data-gift="5"]{--tc:255,120,175}.gift[data-gift="6"]{--tc:170,238,70}.gift[data-gift="7"]{--tc:112,196,255}.gift[data-gift="8"]{--tc:255,120,170}.gift[data-gift="9"]{--tc:255,190,120}.gift[data-gift="10"]{--tc:150,200,255}
+.message[data-tone="g5"]{--tc:255,120,175}.message[data-tone="miss"]{--tc:255,100,150}
+.choice[data-mood="heavy"]{--tc:64,196,255}.choice[data-mood="tired"]{--tc:255,172,84}.choice[data-mood="alone"]{--tc:116,232,180}.choice[data-mood="happy"]{--tc:255,140,210}.choice[data-mood="khush"]{--tc:255,214,90}.choice[data-mood="miss"]{--tc:255,100,150}
+.gift.opened,.choice[data-mood].picked{box-shadow:0 0 16px rgba(var(--tc),.38),inset 0 1px 0 rgba(255,255,255,.22)!important;background:linear-gradient(135deg,rgba(var(--tc),.34),rgba(var(--tc),.12))!important;border:1.5px solid rgba(var(--tc),.92)!important}
+.gift.opened:hover,.choice[data-mood].picked:hover{background:linear-gradient(135deg,rgba(var(--tc),.48),rgba(var(--tc),.2))!important}
+.gift.opened{background:linear-gradient(135deg,rgba(var(--tc),.58),rgba(var(--tc),.26))!important;box-shadow:0 0 26px rgba(var(--tc),.75),inset 0 1px 0 rgba(255,255,255,.3)!important}
+.rs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+.rs-card{position:relative;min-height:128px;border-radius:18px;padding:12px;color:#fff;text-align:left;font-size:13.5px;line-height:1.45;overflow:hidden;border:1.5px solid rgba(var(--tc),.92);background:linear-gradient(135deg,rgba(var(--tc),.36),rgba(var(--tc),.12));box-shadow:0 0 14px rgba(var(--tc),.38)}
+.rs-card:nth-child(10n+1){--tc:255,140,210}.rs-card:nth-child(10n+2){--tc:112,196,255}.rs-card:nth-child(10n+3){--tc:255,214,90}.rs-card:nth-child(10n+4){--tc:116,232,180}.rs-card:nth-child(10n+5){--tc:255,120,170}.rs-card:nth-child(10n+6){--tc:178,130,255}.rs-card:nth-child(10n+7){--tc:255,160,60}.rs-card:nth-child(10n+8){--tc:60,214,208}.rs-card:nth-child(10n+9){--tc:170,238,70}.rs-card:nth-child(10n+10){--tc:255,150,200}
+.rs-front{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:15px;transition:opacity .5s}
+.rs-txt{display:block;filter:blur(10px);opacity:0;transition:filter .8s,opacity .8s}
+.rs-card.on{box-shadow:0 0 24px rgba(var(--tc),.7)}.rs-card.on .rs-front{opacity:0}.rs-card.on .rs-txt{filter:none;opacity:1}
+.plan-wrap{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}
+.plan-chip{padding:10px 13px;border-radius:999px;color:#fff;font-size:13.5px;border:1.5px solid rgba(235,215,255,.7);background:rgba(255,255,255,.08);transition:transform .15s,background .25s,border-color .25s,box-shadow .25s}
+.plan-chip:active{transform:scale(.96)}
+.plan-chip.on{background:linear-gradient(135deg,rgba(255,130,200,.5),rgba(180,130,255,.35));border-color:#ffc4ea;box-shadow:0 0 16px rgba(255,150,220,.6)}
+.plan-chip.on::after{content:" ✅"}
+#planSend:disabled{opacity:.45}
+.fxpop{position:fixed;z-index:60;pointer-events:none;font-size:24px;will-change:transform,opacity;animation:fxUp 2.6s ease-out forwards}
+@keyframes fxUp{0%{opacity:0;transform:translate(0,0) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx,0),var(--dy,-260px)) scale(1.25) rotate(var(--rot,0deg))}}
+.fxtoast{position:fixed;left:50%;top:18%;transform:translateX(-50%);z-index:70;max-width:min(330px,86vw);padding:16px 18px;border-radius:20px;text-align:center;color:#fff;font-size:15.5px;line-height:1.55;border:1.5px solid rgba(255,190,235,.95);background:linear-gradient(135deg,rgba(120,50,170,.92),rgba(70,30,130,.92));box-shadow:0 0 30px rgba(255,150,220,.6);animation:toastIn .6s cubic-bezier(.22,1,.36,1) both}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,-14px) scale(.92)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.fxpop{display:none}}
+
+body.prop-wait .nav{visibility:hidden}
+.gx-wrap{margin:10px 0}.gx-cap{text-align:center;font-size:14px;margin-top:4px;opacity:.95}
+.rs-bonus{margin-top:14px;text-align:center}
+
+/* hidden must really hide (display rules above were overriding it) */
+[hidden]{display:none!important}
+
+#moodMessage{border-radius:8px 22px 22px 22px;text-align:left}
+#moodMessage .who{display:block;position:relative;z-index:1;font-size:12.5px;opacity:.85;margin-bottom:4px}
+#moodMessage .typing{position:absolute;left:18px;top:44px;z-index:1;display:flex;gap:5px;animation:typeGone .8s both}
+#moodMessage .typing i{width:8px;height:8px;border-radius:50%;background:#fff;opacity:.5;animation:dotb .9s infinite}
+#moodMessage .typing i:nth-child(2){animation-delay:.15s}#moodMessage .typing i:nth-child(3){animation-delay:.3s}
+#moodMessage .react{display:block;position:relative;z-index:1;margin-top:6px;font-size:22px;opacity:0;animation:reactPop .5s ease both}
+.bowtie{position:absolute;top:8px;right:12px;z-index:1;font-size:24px;opacity:0;animation:reactPop .6s .5s both}
+@keyframes typeGone{0%,85%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes dotb{50%{opacity:1;transform:translateY(-4px)}}
+@keyframes reactPop{from{opacity:0;transform:scale(2)}to{opacity:1;transform:scale(1)}}
+
+#giftMessage{border-style:dashed!important;padding:0!important;text-align:left}
+#giftMessage .tk-top{position:relative;z-index:1;display:flex;justify-content:space-between;gap:8px;padding:13px 16px;font-size:14.5px;font-weight:600;background:rgba(var(--tc),.3);border-bottom:2px dashed rgba(255,255,255,.55)}
+#giftMessage .tk-body{position:relative;z-index:1;display:block;padding:14px 16px 10px;line-height:1.65}
+#giftMessage .tk-ft{position:relative;z-index:1;display:flex;justify-content:space-between;gap:8px;padding:0 16px 13px;font-size:12.5px;opacity:0;animation:wdIn .7s ease both}
+#giftMessage .tk-n{position:absolute;z-index:2;top:36px;width:20px;height:20px;border-radius:50%;background:#2a1262}
+#giftMessage .tk-n.l{left:-11px}#giftMessage .tk-n.r{right:-11px}
+#giftMessage.show,#careMessage.show{animation:softGlow 4.5s ease-in-out infinite}
+#careMessage{border-radius:24px;text-align:center;padding-top:14px}
+#careMessage .care-badge{display:block;position:relative;z-index:1;font-size:32px;margin-bottom:6px;animation:floatY 3.2s ease-in-out infinite}
+@keyframes softGlow{0%,100%{filter:drop-shadow(0 0 6px rgba(var(--tc),.4))}50%{filter:drop-shadow(0 0 22px rgba(var(--tc),.95))}}
+@keyframes floatY{50%{transform:translateY(-6px)}}
 </style>
 </head>
 <body>
@@ -1457,14 +1519,14 @@ a,button,[role="button"],.choice,.gift,.moon-wrap,.cover-env{touch-action:manipu
   <button class="cover-env" id="beginBtn" type="button" aria-label="Tap to begin — chitthi kholo">
     <span class="e-back"></span><span class="e-flap-in"></span><span class="e-letter">for Riya ♡</span><span class="e-front"></span><span class="e-flap"></span><span class="e-seal">💗</span>
   </button>
-  <div class="env-label" id="envLabel">Tap to begin 💌</div>
+  <div class="env-label" id="envLabel">Shuru karo 💌</div>
   <div class="cover-hint">🎧 halki awaaz ke saath behtar lagta hai</div>
 </div>
 <main class="shell">
   <div class="topline"><div class="brand">Riya ka chhota sa corner 🖤</div><div class="topright"><div class="counter" id="counter">Chapter 1 of 8</div><button class="sound" id="soundBtn" type="button" aria-label="Music on/off" hidden>🔊</button></div></div>
-  <div class="track" role="progressbar" aria-label="Journey progress" aria-valuemin="1" aria-valuemax="9" aria-valuenow="1" id="progress"><div id="bar"></div></div>
+  <div class="track" role="progressbar" aria-label="Journey progress" aria-valuemin="1" aria-valuemax="11" aria-valuenow="1" id="progress"><div id="bar"></div></div>
   <section class="panel" id="panel" aria-live="polite"></section>
-  <div class="nav"><button class="btn secondary" id="prev" type="button">← Previous</button><button class="btn" id="next" type="button">Next →</button></div>
+  <div class="nav"><button class="btn secondary" id="prev" type="button">← Peeche</button><button class="btn" id="next" type="button">Aage →</button></div>
   <div class="footnote">Sirf meri Riya ke liye, bohot saare pyaar ke saath. 🖤</div>
   <div class="footnote" style="margin-top:6px;font-size:11px;opacity:.8">← swipe karke bhi chapter badal sakti ho →</div>
   <div class="footnote" style="margin-top:6px;font-size:10px;opacity:.75">Music: “Clair de Lune” (Debussy), piano by Podington Bear · CC BY-NC 3.0 · background dhun shortened and looped</div>
@@ -1473,7 +1535,7 @@ a,button,[role="button"],.choice,.gift,.moon-wrap,.cover-env{touch-action:manipu
 (() => {
 const chapters = [
 {label:"A soft beginning", render:()=>`
-<div class="eyebrow">a tiny pause, just for you</div>
+<div class="eyebrow">bas ek chhota sa pause, sirf tumhare liye</div>
 <div class="hero-orb" aria-hidden="true">🌷<i style="left:-14px;top:18px;--d:0s"></i><i style="right:-12px;top:6px;--d:-1.2s"></i><i style="right:-22px;bottom:22px;--d:-2.1s"></i><i style="left:6px;bottom:-12px;--d:-.7s"></i><i style="left:46%;top:-20px;--d:-1.7s"></i></div>
 <h1 class="hero-h">Riya, meri jaan, welcome to your little corner. 💗</h1>
 <div class="hero-lines">
@@ -1481,8 +1543,8 @@ const chapters = [
 <p class="hl" style="--i:1">Kuch chhote messages, cute surprises, jokes aur bohot saara pyaar, sab sirf meri Riya ke liye, jab tumhara mann ho. 🖤</p>
 <div class="soft-note hl moon-note" style="--i:2"><i class="mn-star" style="top:10px;right:14px;--s:9px;--d:0s" aria-hidden="true"></i><i class="mn-star" style="top:34px;right:38px;--s:6px;--d:-1.3s" aria-hidden="true"></i><i class="mn-star" style="bottom:12px;right:20px;--s:7px;--d:-2.2s" aria-hidden="true"></i><svg class="mn-run" aria-hidden="true" focusable="false"><defs><linearGradient id="mnRingGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd98a"/><stop offset=".5" stop-color="#ff9bd8"/><stop offset="1" stop-color="#8fe9ff"/></linearGradient></defs><rect class="rg" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/><rect class="r1" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/><rect class="r2" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/><rect class="rf" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/></svg><span class="mn-text">Tum jaisa mehsoos kar rahi ho, <span class="mn-k1">woh matter karta hai.</span> <span class="mn-k2">Tumhe mere saamne kuch prove nahi karna, jaan.</span> <span class="mn-moon">🌙</span></span></div>
 </div>
-<div class="actions"><button class="btn" data-action="sparkle">A little sparkle ✨</button></div>
-<div class="hero-hint">jab ready ho, <b>Next →</b> dabao</div>`},
+<div class="actions"><button class="btn" data-action="sparkle">Ek aur sparkle ✨</button></div>
+<div class="hero-hint">jab ready ho, <b>Aage →</b> dabao</div>`},
 {label:"Tum jaisi ho",render:()=>`
 <div class="eyebrow">sirf tumhare liye likha hai ✨</div><h2>Riya, ye baatein sirf tumhare liye 💜</h2>
 <div class="qual-list">
@@ -1492,29 +1554,29 @@ const chapters = [
 </div>
 <div class="note-pager" id="notePager"><span class="np-emoji" aria-hidden="true">💌</span><div class="np-stage" aria-live="polite"><div class="soft-note np-page on" data-p="0">Tumne sabke liye sab kuch kiya, ab tumhari baari hai. Tum bhi khushiyan, care aur apnapan deserve karti ho. Ab thoda apne upar dhyan dena aur bas khush rehna. 💜</div><div class="soft-note np-page" data-p="1" aria-hidden="true">Ab kaun kya kehta hai, uski itni fikr mat karna. Bas apne mann ki karna. Aur agar kabhi kuch achha na lage ya pareshaan ho jao, toh mujhe zaroor batana. Main hoon tumhare liye. 🤍</div></div><div class="np-nav"><button type="button" class="np-btn" data-np="prev" aria-label="Pehli baat" disabled>←</button><span class="np-dots" aria-hidden="true"><i class="on"></i><i></i></span><button type="button" class="np-btn np-next" data-np="next" aria-label="Agli baat">agla →</button></div></div><div class="eyebrow lw-label">ek aakhri baat 💜</div><div class="qual star-note" style="--i:5"><i class="sn-star" style="top:9px;right:12px;--s:9px;--d:0s" aria-hidden="true"></i><i class="sn-star" style="top:30px;right:34px;--s:6px;--d:-1.4s" aria-hidden="true"></i><i class="sn-star" style="bottom:10px;right:18px;--s:7px;--d:-2.3s" aria-hidden="true"></i><svg class="sn-run" aria-hidden="true" focusable="false"><defs><linearGradient id="snRingGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d8bcff"/><stop offset=".5" stop-color="#fff0ff"/><stop offset="1" stop-color="#ff9bd8"/></linearGradient></defs><rect class="rg" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/><rect class="r1" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/><rect class="r2" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/><rect class="rf" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/></svg><span class="sn-emoji">🌱</span><div class="sn-text">Bachpan se abhi tak itna kuch jhelne ke baad bhi tum sabke liye sab kuch karti ho, itna sochti ho. <span class="sn-k1">Ye kamzori ya galti nahi hai,</span> <span class="sn-k2">ye sirf tumhari achhai hai, aur isi par main fida hoon.</span></div></div>`},
 {label:"Mood check-in",render:()=>`
-<div class="eyebrow">what kind of moment is it?</div><h2>Riya, abhi dil kaisa feel kar raha hai? 🫂</h2><p>Koi right ya wrong answer nahi, jaan. Jo option tumhare kareeb lage, us par tap karo.</p>
+<div class="eyebrow">abhi kaisa pal hai?</div><h2>Riya, abhi dil kaisa feel kar raha hai? 🫂</h2><p>Koi right ya wrong answer nahi, jaan. Jo option tumhare kareeb lage, us par tap karo.</p>
 <div class="mood-grid">
 <button class="choice" data-mood="heavy"><span class="emoji">🌧️</span><strong>Dil heavy hai</strong><small>Bas thoda comfort</small></button>
 <button class="choice" data-mood="tired"><span class="emoji">🧸</span><strong>Bahut thak gayi hoon</strong><small>Rest ki permission</small></button>
-<button class="choice" data-mood="alone"><span class="emoji">🌙</span><strong>Akela feel ho raha hai</strong><small>Ek gentle reminder</small></button>
-<button class="choice" data-mood="happy"><span class="emoji">🍓</span><strong>Kuch cute chahiye</strong><small>Little smile corner</small></button>
-<button class="choice" data-mood="khush"><span class="emoji">🥳</span><strong>Khush hoon</strong><small>Party time</small></button><button class="choice" data-mood="miss"><span class="emoji">🥺</span><strong>Tumhe miss kar rahi hoon</strong><small>Ek jhappi</small></button>
+<button class="choice" data-mood="alone"><span class="emoji">🌙</span><strong>Akela feel ho raha hai</strong><small>Ek pyaara reminder</small></button>
+<button class="choice" data-mood="happy"><span class="emoji">🍓</span><strong>Kuch cute chahiye</strong><small>Chhoti si smile</small></button>
+<button class="choice" data-mood="khush"><span class="emoji">🥳</span><strong>Khush hoon</strong><small>Party ka time</small></button><button class="choice" data-mood="miss"><span class="emoji">🥺</span><strong>Tumhe miss kar rahi hoon</strong><small>Ek jhappi</small></button>
 </div><div class="message" id="moodMessage" role="status"></div>
 <button class="back-up" type="button" data-action="backToMoods" id="backToMoods" hidden>↑ wapas gifts par</button>`},
 {label:"Tiny surprise gifts",render:()=>`
-<div class="eyebrow">tap to unwrap 🎁</div><h2>Chhote-chhote gifts, sirf meri Riya ke liye</h2><p>Har box me ek alag baat chhupi hai. Tum sab khol sakti ho, ya bas apna favourite choose kar lo, princess.</p>
+<div class="eyebrow">tap karke kholo 🎁</div><h2>Chhote-chhote gifts, sirf meri Riya ke liye</h2><p>Har box me ek alag baat chhupi hai. Tum sab khol sakti ho, ya bas apna favourite choose kar lo, princess.</p>
 <div class="gift-grid">
-<button class="gift" data-gift="0"><span class="emoji">💌</span><strong>Kind words</strong><small>tap to open</small></button>
-<button class="gift" data-gift="1"><span class="emoji">🥟</span><strong>Momos break</strong><small>tap to open</small></button>
-<button class="gift" data-gift="2"><span class="emoji">🖤</span><strong>Black, tumhara rang</strong><small>tap to open</small></button>
-<button class="gift" data-gift="3"><span class="emoji">🌿</span><strong>Ghumne ka mood</strong><small>tap to open</small></button>
-<button class="gift" data-gift="4"><span class="emoji">🌷</span><strong>Soft day</strong><small>tap to open</small></button>
-<button class="gift" data-gift="5"><span class="emoji">🫶</span><strong>Care note</strong><small>tap to open</small></button>
-<button class="gift" data-gift="6"><span class="emoji">🐱</span><strong>Cute cats</strong><small>tap to open</small></button>
-<button class="gift" data-gift="7"><span class="emoji">🎶</span><strong>Ishq Hua</strong><small>tap to open</small></button>
-<button class="gift" data-gift="8"><span class="emoji">🎟️</span><strong>Love coupons</strong><small>tap to open</small></button>
-<button class="gift" data-gift="9"><span class="emoji">💌</span><strong>Open when…</strong><small>tap to open</small></button>
-<button class="gift" data-gift="10"><span class="emoji">📸</span><strong>Hum dono</strong><small>tap to open</small></button>
+<button class="gift" data-gift="0"><span class="emoji">💌</span><strong>Kind words</strong><small>tap karo</small></button>
+<button class="gift" data-gift="1"><span class="emoji">🥟</span><strong>Momos break</strong><small>tap karo</small></button>
+<button class="gift" data-gift="2"><span class="emoji">🖤</span><strong>Black, tumhara rang</strong><small>tap karo</small></button>
+<button class="gift" data-gift="3"><span class="emoji">🌿</span><strong>Ghumne ka mood</strong><small>tap karo</small></button>
+<button class="gift" data-gift="4"><span class="emoji">🌷</span><strong>Soft day</strong><small>tap karo</small></button>
+<button class="gift" data-gift="5"><span class="emoji">🫶</span><strong>Care note</strong><small>tap karo</small></button>
+<button class="gift" data-gift="6"><span class="emoji">🐱</span><strong>Cute cats</strong><small>tap karo</small></button>
+<button class="gift" data-gift="7"><span class="emoji">🎶</span><strong>Ishq Hua</strong><small>tap karo</small></button>
+<button class="gift" data-gift="8"><span class="emoji">🎟️</span><strong>Love coupons</strong><small>tap karo</small></button>
+<button class="gift" data-gift="9"><span class="emoji">💌</span><strong>Open when…</strong><small>tap karo</small></button>
+<button class="gift" data-gift="10"><span class="emoji">📸</span><strong>Meri Riya</strong><small>tap karo</small></button>
 
 
 
@@ -1525,33 +1587,45 @@ const chapters = [
 </div><div class="message" id="giftMessage" role="status"></div><div id="giftExtra"></div>
 <div class="song-card" id="songCard" hidden><div class="song-head"><div class="song-title">🖤 Ishq Hua</div><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div><div class="song-sub">🎶 Tumhara favourite, mere liye bhi</div><div id="songHost"></div><div class="song-note">play dabao, aur mujhe yaad karo 🤍</div></div><button class="back-up" type="button" data-action="backToGifts" id="backToGifts" hidden>↑ wapas gifts par</button>`},
 {label:"Peaceful care corner",render:()=>`
-<div class="eyebrow">slow down, if you want 🌙</div><h2>Abhi bas ek chhota sa pause</h2><p>Tum chaho toh is soft circle ke saath aaram se saans lene ki rhythm follow kar sakti ho. Koi target nahi, koi perfect technique nahi — uncomfortable lage toh normal breathing par laut aao.</p>
+<div class="eyebrow">thoda ruk jao, agar mann ho 🌙</div><h2>Abhi bas ek chhota sa pause</h2><p>Tum chaho toh is soft circle ke saath aaram se saans lene ki rhythm follow kar sakti ho. Koi target nahi, koi perfect technique nahi — uncomfortable lage toh normal breathing par laut aao.</p>
 <div class="breath-wrap"><div class="breath-orb" aria-hidden="true"><span>☁️</span></div><p><strong id="breathLbl">Bas circle ko dekho… 🌙</strong></p><p class="tiny">Circle sirf ek gentle visual hai. Apni natural pace par hi raho.</p></div>
-<div class="soft-note">🌷 Paani ka ek sip, shoulders ko relax karna, ya kuch der aaram — inmein se ek chhoti cheez bhi kaafi hai. Rest earn karna nahi padta.</div>
+<div class="soft-note">🌷 Paani ka ek sip, shoulders ko relax karna, ya kuch der aaram — inmein se ek chhoti cheez bhi kaafi hai. Rest earn karna nahi padta. Aur thak jao toh mere kandhe hamesha available hain 😌🖤</div>
 <p style="margin-top:14px"><strong>Abhi tumhe kya chahiye, jaan?</strong></p>
 <div class="mood-grid care-grid">
 <button class="choice" data-care="water"><span class="emoji">💧</span><strong>Paani ka sip</strong><small>Body ko thoda pyaar</small></button>
 <button class="choice" data-care="shoulders"><span class="emoji">🧘</span><strong>Shoulders dheele</strong><small>30 second ka reset</small></button>
 <button class="choice" data-care="hug"><span class="emoji">🫂</span><strong>Ek tight hug</strong><small>Jitna lamba chaho</small></button>
 <button class="choice" data-care="rest"><span class="emoji">🌙</span><strong>Thoda rest</strong><small>Bina guilt ke</small></button>
-</div><div class="message" id="careMessage" role="status"></div>`},
+</div><div class="message" id="careMessage" role="status"></div><button class="back-up" type="button" data-action="backToCare" id="backToCare" hidden>↑ wapas boxes par</button>`},
 {label:"Cute smile corner",render:()=>`
 <div class="eyebrow">smile corner 🧸</div><h2>Ek chhoti si baat sunogi, Riya? 😘</h2><p>Jokes, flirt, compliments ya shayari, jo mann ho chuno aur button dabate jao. Har tap par ek nayi line, sirf meri jaan ke liye. 💗</p>
 <div class="sm-tabs"><button class="btn secondary on" data-st="joke">😂 Jokes</button><button class="btn secondary" data-st="flirt">😘 Flirt</button><button class="btn secondary" data-st="comp">💗 Compliments</button><button class="btn secondary" data-st="shayari">📜 Shayari</button></div>
 <div class="soft-note" id="randomLine" data-rt="d" role="status">Tum meri favourite insaan ho, ye bhoolna mat. 🖤<i class="rl-star" aria-hidden="true"></i></div><div class="rl-count" id="rlCount"></div>
-<div class="actions"><button class="btn" data-action="random">Ek aur pyaari baat 🌸</button><button class="btn secondary" data-action="sparkle">Tiny sparkle ✨</button></div>`},
+<div class="actions"><button class="btn" data-action="random">Ek aur pyaari baat 🌸</button><button class="btn secondary" data-action="sparkle">Ek aur sparkle ✨</button></div>`},
 {label:"Secret lock",render:()=>`
 <div class="eyebrow">sirf meri Riya ke liye 🔐</div><h2>Secret Lock</h2><p>6 pyaari paheliyan, sab sirf tumhare baare me. Answer apne words me likho, aur har paheli ke saath 4 hints hain. Sab khol do aur ek secret surprise tumhara. Galti ho toh koi baat nahi, jaan, hint le lena 😘</p>
 <div class="soft-note" id="lockBox" role="status"></div>`},
 {label:"Your thoughts",render:()=>`
-<div class="eyebrow">sirf mere liye 💌</div><h2>Mujhe kuch kehna hai 💭</h2><p>Jo bhi mann me ho, pyaar, shikayat ya kuch cute, yahan likho. Phir "Mujhe bhej do" dabao, wo seedha mere WhatsApp par khulega.</p>
+<div class="eyebrow">sirf mere liye 💌</div><h2>Mujhe kuch kehna hai 💭</h2><p>Jo bhi mann me ho, pyaar, shikayat ya kuch cute, yahan likho. Phir "Mujhe bhej do" dabao, wo seedha mere WhatsApp par khulega. Aur agar bas "I miss you" likhogi, toh bhi mera din ban jayega 🥹</p>
 <textarea class="thoughts" id="thoughts" placeholder="Jo mann me aaye, yahan likho…" aria-label="Your thoughts"></textarea>
 <div class="privacy"><strong>Privacy note:</strong> Jab tak tum "Mujhe bhej do" nahi dabati, ye text kahin save ya send nahi hota. Dabane par WhatsApp khulega, aur bhejna tumhare haath me hai.</div>
 <div class="actions"><button class="btn secondary" data-action="clearThoughts">Clear</button><button class="btn" data-action="waSend">Mujhe bhej do 💌</button></div><div class="message" id="thoughtMessage" role="status"></div>`},
+ {label:"Reasons",render:()=>`
+<div class="eyebrow">tap karke dekho 🪄</div><h2>Riya, tumse pyaar karne ki wajahein 💗</h2>
+<p>Har card ke peeche ek wajah chhupi hai. Ek-ek karke kholo, jaan. Saari khul gayi na, toh ek bonus bhi milega 😏</p>
+<div class="rs-grid"><button class="rs-card" type="button" data-rs="0"><span class="rs-front">Wajah #1<br>✨</span><span class="rs-txt">Tumhari hansi: ek second me meri poori thakaan gayab 😍</span></button><button class="rs-card" type="button" data-rs="1"><span class="rs-front">Wajah #2<br>✨</span><span class="rs-txt">Tum chidhti ho tab bhi cute lagti ho, ye toh scientifically unfair hai 😤💗</span></button><button class="rs-card" type="button" data-rs="2"><span class="rs-front">Wajah #3<br>✨</span><span class="rs-txt">Tum sabke liye itna sochti ho, isliye main hamesha tumhare liye sochta hoon 🫶</span></button><button class="rs-card" type="button" data-rs="3"><span class="rs-front">Wajah #4<br>✨</span><span class="rs-txt">Tumhari awaaz sunke mera din set ho jaata hai, call kaatne ka mann hi nahi karta 🎶</span></button><button class="rs-card" type="button" data-rs="4"><span class="rs-front">Wajah #5<br>✨</span><span class="rs-txt">Tum meri jaan ho, aur jaan ke bina koi kaise jiye? 🥹</span></button><button class="rs-card" type="button" data-rs="5"><span class="rs-front">Wajah #6<br>✨</span><span class="rs-txt">Tumhari aankhon me wo sukoon hai jo mujhe kahin aur nahi mila 👀🖤</span></button><button class="rs-card" type="button" data-rs="6"><span class="rs-front">Wajah #7<br>✨</span><span class="rs-txt">Tum momos itne pyaar se khati ho ki mujhe momos se jealousy hone lagti hai 🥟😂</span></button><button class="rs-card" type="button" data-rs="7"><span class="rs-front">Wajah #8<br>✨</span><span class="rs-txt">Tum jaisi ho, waisi hi sabse achhi ho. Kuch bhi change mat karna, betu 🌷</span></button><button class="rs-card" type="button" data-rs="8"><span class="rs-front">Wajah #9<br>✨</span><span class="rs-txt">Tum saath ho toh ghumna bhi manzil lagta hai, aur manzil bhi ghumna 🚗💗</span></button><button class="rs-card" type="button" data-rs="9"><span class="rs-front">Wajah #10<br>✨</span><span class="rs-txt">Kyunki tum Riya ho: meri rasmalai, meri princess, meri puri duniya 👑🖤</span></button></div>
+<div class="rl-count" id="rsCount">0 / 10 wajahein mili ✨</div>
+<div class="soft-note moon-note rs-bonus" id="rsBonus" hidden style="--i:-2"><i class="mn-star" style="top:10px;right:14px;--s:9px;--d:0s" aria-hidden="true"></i><i class="mn-star" style="top:34px;right:38px;--s:6px;--d:-1.3s" aria-hidden="true"></i><i class="mn-star" style="bottom:12px;right:20px;--s:7px;--d:-2.2s" aria-hidden="true"></i><svg class="mn-run" aria-hidden="true" focusable="false"><defs><linearGradient id="mnRingGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd98a"/><stop offset=".5" stop-color="#ff9bd8"/><stop offset="1" stop-color="#8fe9ff"/></linearGradient></defs><rect class="rg" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/><rect class="r1" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/><rect class="r2" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/><rect class="rf" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/></svg><span class="mn-text">🎁 Bonus wajah #11: <span class="mn-k1">kyunki tum mere saath ho,</span> <span class="mn-k2">aur main tumhara. Hamesha.</span> <span class="mn-moon">🖤</span></span></div>`},
+ {label:"Hamara plan",render:()=>`
+<div class="eyebrow">ghumne chalein? 🧳</div><h2>Hamari ghumne ki wishlist ✈️</h2>
+<p>Jo jo tumhe pasand aaye, tap karke wishlist me daal do. Phir "Plan bhej do" dabao, main sab karwa dunga, promise 🤞</p>
+<div class="plan-wrap"><button class="plan-chip" type="button" data-plan="Pahadon ki long drive 🏔️">Pahadon ki long drive 🏔️</button><button class="plan-chip" type="button" data-plan="Beach pe sunset 🌅">Beach pe sunset 🌅</button><button class="plan-chip" type="button" data-plan="Momos street crawl 🥟">Momos street crawl 🥟</button><button class="plan-chip" type="button" data-plan="Raat ko long walk + chai ☕">Raat ko long walk + chai ☕</button><button class="plan-chip" type="button" data-plan="Movie date 🍿">Movie date 🍿</button><button class="plan-chip" type="button" data-plan="Candlelight dinner 🕯️">Candlelight dinner 🕯️</button><button class="plan-chip" type="button" data-plan="Playlist wala road trip 🚗🎶">Playlist wala road trip 🚗🎶</button><button class="plan-chip" type="button" data-plan="Barish me bheegna 🌧️">Barish me bheegna 🌧️</button><button class="plan-chip" type="button" data-plan="Rasmalai date 🍮">Rasmalai date 🍮</button><button class="plan-chip" type="button" data-plan="Stargazing ⭐">Stargazing ⭐</button><button class="plan-chip" type="button" data-plan="Ek din sirf tumhari marzi 👑">Ek din sirf tumhari marzi 👑</button><button class="plan-chip" type="button" data-plan="Ishq Hua pe dance 💃">Ishq Hua pe dance 💃</button></div>
+<div class="rl-count" id="planCount">Wishlist me abhi 0 cheezein 💗</div>
+<div class="actions"><button class="btn" type="button" id="planSend" disabled>Plan bhej do 💌</button></div>`},
  {label:"One last gentle note",render:()=>`
-<div class="eyebrow">one last thing, jaan 💜</div><div class="final-heart">💌</div><h2>Riya, ye last wala thoda alag hai…</h2>
+<div class="eyebrow">ek last cheez, jaan 💜</div><div class="final-heart">💌</div><h2>Riya, ye last wala thoda alag hai…</h2>
 <p>Ek chhota sa letter hai, sirf tumhare liye. Jab ready ho, tab kholo, koi jaldi nahi. 🌙</p>
-<div class="letter-controls"><button class="btn" data-action="openLetter">Tap to open your letter 💌</button><button class="btn secondary" data-action="skipLetter" hidden>Show the whole letter</button></div>
+<div class="letter-controls"><button class="btn" data-action="openLetter">Letter kholo 💌</button><button class="btn secondary" data-action="skipLetter" hidden>Poora letter dikhao</button></div>
 <div class="letter-content" id="letterContent" aria-live="polite">
 <h2>Riya, please read this slowly… 💜</h2>
 <div id="letterParagraphs"></div>
@@ -1559,16 +1633,16 @@ const chapters = [
 <p class="letter-promise" id="letterPromise" hidden>Jab bhi mann bhaari lage, ya bas meri yaad aaye, mujhse baat karna. Main hoon tumhe sunne ke liye, hamesha. 💌</p>
 <p class="letter-wish" id="letterWish" hidden>Ek shooting star guzra hai… ek wish maang lo, jaan. Main bhi wahi maang raha hoon. 🌠</p>
 <p class="letter-sign" id="letterSign" hidden>— sirf tumhara, hamesha 🖤<span>Hitesh</span></p>
-<div class="letter-dm" id="letterDM" hidden><div class="prop"><div class="prop-q">Kya tum hamesha meri rahogi? 💍</div><div class="prop-btns" id="propBtns"><button class="btn" data-action="propYes" type="button">Yes, hamesha 🖤</button><button class="btn secondary" id="noBtn" type="button">No 🙈</button></div><div class="prop-res" id="propRes" hidden><div class="prop-love">I love you Riya 🖤</div><div class="soft-note" style="text-align:center;margin:14px 0"><div>Hume pehli baar mile hue 🖤</div><div id="dayLive" style="font-size:19px;font-weight:800;margin:5px 0">…</div><div style="font-size:13px;margin-bottom:4px">Aur ye ginti abhi bohot lambi chalegi, jaan ♾️</div><div id="bdayLive" style="font-size:13px"></div></div><p>Pakka na, meri jaan? Ab mujhe batao… 👇</p><a class="btn dm-btn" id="waBtn" href="https://wa.me/917717587757?text=Haan%20jaan%2C%20main%20hamesha%20tumhari%20rahungi%20%F0%9F%96%A4%20I%20love%20you%20Hitesh%20%F0%9F%A5%B9" target="_blank" rel="noopener"><span class="dm-label">Main yahin hoon, jaan 🖤</span><span class="dm-arrow" aria-hidden="true">→</span></a></div></div></div>
+<div class="letter-dm" id="letterDM" hidden><div class="prop"><div class="prop-q">Kya tum hamesha meri rahogi? 💍</div><div class="prop-btns" id="propBtns"><button class="btn" data-action="propYes" type="button">Yes, hamesha 🖤</button><button class="btn secondary" id="noBtn" type="button">No 🙈</button></div><div class="prop-res" id="propRes" hidden><div class="prop-love">I love you Riya 🖤</div><div class="soft-note" style="text-align:center;margin:14px 0"><div>Hume pehli baar mile hue 🖤</div><div id="dayLive" style="font-size:19px;font-weight:800;margin:5px 0">…</div><div style="font-size:13px;margin-bottom:4px">Aur ye ginti abhi bohot lambi chalegi, jaan ♾️</div><div id="bdayLive" style="font-size:13px"></div></div><p>Pakka na, meri jaan? Ab mujhe batao… 👇</p><a class="btn dm-btn" id="waBtn" href="https://wa.me/917717587757?text=Haan%20jaan%2C%20main%20hamesha%20tumhari%20rahungi%20%F0%9F%96%A4%20I%20love%20you%20Hitesh%20%F0%9F%A5%B9"><span class="dm-label">Main yahin hoon, jaan 🖤</span><span class="dm-arrow" aria-hidden="true">→</span></a></div></div></div>
 </div>
-<div class="actions"><button class="btn secondary" data-action="restart">Start again 🔄</button><button class="btn secondary" data-action="sparkle">A final sparkle ✨</button></div>`}
+<div class="actions" id="finalActions" hidden><button class="btn secondary" data-action="restart">Phir se shuru 🔄</button><button class="btn secondary" data-action="sparkle">Ek aur sparkle ✨</button></div>`}
 ];
 let index=0;
 const panel=document.getElementById('panel'), counter=document.getElementById('counter'), bar=document.getElementById('bar'), progress=document.getElementById('progress'), prev=document.getElementById('prev'), next=document.getElementById('next');
 const gifts=[
 "Riya, meri jaan, tumhe har waqt sab sambhalne ki zaroorat nahi. Tum bhi care deserve karti ho, aur wo care main dunga. 💌",
 "Official order: aaj momos ki poori plate tumhari, baby. Last wala momo bhi. Main bas tumhe khate hue dekhunga 😌🥟",
-"Black tumhara favourite hai, isliye ye gift bhi black 🖤 Aur sach bolun, black tum par itna suit karta hai ki baaki saare colours jealous ho gaye.",
+"Black tumhara favourite hai, isliye ye gift sirf tumhare liye 🖤 Aur sach bolun, black tum par itna suit karta hai ki baaki saare colours jealous ho gaye.",
 "Tumhe ghumna pasand hai na, princess? Ek din bas tum aur main, khuli sadak, long drive, dher saari photos, aur beech me rukke momos. Plan tumhara, driver main 🌿🚗",
 "Har din productive hona zaroori nahi, darling. Soft day bhi valid day hai, aur us din bhi main tumhare saath hoon. 🌷",
 "Tumhari baat sunne layak hai, rasmalai. Jitna share karna chaho utna kaafi hai, baaki main sab sun lunga. 🫶",
@@ -1576,7 +1650,7 @@ const gifts=[
 "Ye gaana tumhara favourite hai, isliye yahan chhupa diya 🎶 Jab bhi play dabaogi, yaad rakhna, ishq mujhe sach me hua hai, tumse. 🖤",
 "Ye lo tumhare Love Coupons, meri jaan. Jab chaho use karo, no questions asked 🎟️",
 "Jab jo feel ho, wo wala letter kholo. Har mood ke liye ek chhoti si baat chhupi hai 💌",
-"Meri taraf se kuch yaadein aur ek awaaz, sirf tumhare liye 🥺"
+"Meri Riya ki kuch tasveerein, jo mujhe sabse pyaari hain. Camera bhi tumhe dekh ke sharma gaya 📸🥺"
 ];
 
 
@@ -1779,7 +1853,7 @@ function chapterFx(){
  else if(index===6)at(900,()=>sprinkle(['🔐','✨','🖤']));
   else if(index===5)at(500,()=>rain(['🍓','🧁','🐣','💗','🌸','✨'],16,'down'));
  else if(index===7)at(1800,()=>sprinkle(['✏️','✨','💜']));
- else if(index===8)at(1200,()=>rain(['✨','✨','✨'],16,'down',true));
+ else if(index===8)at(900,()=>sprinkle(['💗','✨','🪄','💜']));else if(index===9)at(900,()=>sprinkle(['🚗','✈️','🌅','✨']));else if(index===10)at(1200,()=>rain(['✨','✨','✨'],16,'down',true));
 }
 function playTurn(dir){
  chapterFx();
@@ -1794,16 +1868,31 @@ function clearMoodFx(){[moodfx,moodtop].forEach(el=>{if(el){el.className=el.id==
 /* ---- message touches (chapter 3 moods + chapter 4 gifts): word-by-word reveal, one glass shimmer, a small colour touch. No emoji. ---- */
 function revealWords(el,text,slow){
  el.textContent='';
+ const id=el.id,chat=id==='moodMessage',gift=id==='giftMessage',care=id==='careMessage';
+ const base=chat?.8:(care?.4:(gift?.5:0));
+ let host=el;
+ if(chat){const w0=document.createElement('span');w0.className='who';w0.textContent='Hitesh 🖤';el.appendChild(w0);const t0=document.createElement('span');t0.className='typing';t0.innerHTML='<i></i><i></i><i></i>';el.appendChild(t0);}
+ if(care){const E={cw:'💧',cs:'🧘',ch:'🫂',cr:'🌙'};const bd=document.createElement('span');bd.className='care-badge';bd.textContent=E[el.dataset.tone]||'✨';el.appendChild(bd);const bw2=document.createElement('span');bw2.className='bowtie';bw2.textContent='🎀';el.appendChild(bw2);}
+ if(gift){
+  const n=(el.dataset.tone||'').slice(1),btn=document.querySelector('.gift[data-gift="'+n+'"]');
+  const nm=btn&&btn.querySelector('strong')?btn.querySelector('strong').textContent:'Gift';
+  const top=document.createElement('span');top.className='tk-top';
+  const t1=document.createElement('span');t1.textContent='🎟️ '+nm;const t2=document.createElement('span');t2.textContent='Valid: hamesha';top.appendChild(t1);top.appendChild(t2);el.appendChild(top);
+  ['l','r'].forEach(function(k){const nt=document.createElement('i');nt.className='tk-n '+k;el.appendChild(nt);});
+  host=document.createElement('span');host.className='tk-body';el.appendChild(host);
+ }
  const words=String(text).split(/\s+/).filter(Boolean);
- const step=slow?.1:Math.min(.05,1.2/Math.max(words.length,1));
+ const step=slow?.1:(chat?.07:(care?.09:Math.min(.05,1.2/Math.max(words.length,1))));
  words.forEach((w,i)=>{
-  if(i)el.appendChild(document.createTextNode(' '));
+  if(i)host.appendChild(document.createTextNode(' '));
   const sp=document.createElement('span');
   sp.className='wd';
-  sp.style.animationDelay=(i*step).toFixed(3)+'s';
+  sp.style.animationDelay=(base+i*step).toFixed(3)+'s';
   sp.textContent=w;
-  el.appendChild(sp);
+  host.appendChild(sp);
  });
+ if(chat){const r0=document.createElement('span');r0.className='react';r0.textContent='💗';r0.style.animationDelay=(base+words.length*step+.4).toFixed(2)+'s';el.appendChild(r0);}
+ if(gift){const ft=document.createElement('span');ft.className='tk-ft';ft.style.animationDelay=(base+words.length*step+.2).toFixed(2)+'s';const f1=document.createElement('span');f1.textContent='Sirf Riya ke liye';const f2=document.createElement('span');f2.textContent='Hitesh 🖤';ft.appendChild(f1);ft.appendChild(f2);el.appendChild(ft);}
 }
 function showTouch(el,text,tone){
  el.classList.remove('show');
@@ -1812,6 +1901,7 @@ function showTouch(el,text,tone){
  revealWords(el,text);
  el.classList.add('show');
 }
+window.showTouch=showTouch;
 function setMoodFx(kind){
  if(!moodfx||!moodtop)return;
  clearMoodFx();
@@ -1909,13 +1999,13 @@ function render(){
   let row=panel.querySelector('.actions');
   const hasOthers=!!row;
   if(!row){row=document.createElement('div');row.className='actions';panel.appendChild(row);}
-  row.insertAdjacentHTML('beforeend','<button class="btn'+(hasOthers?' secondary':'')+'" data-action="sparkle">A little sparkle ✨</button>');
+  row.insertAdjacentHTML('beforeend','<button class="btn'+(hasOthers?' secondary':'')+'" data-action="sparkle">Ek aur sparkle ✨</button>');
  }
  const sn=panel.querySelector('.star-note');
  if(sn){sn.insertAdjacentHTML('beforeend','<i class="sp-seed" aria-hidden="true"></i><i class="sp-leaf" aria-hidden="true" style="--lx:34px;--ly:-22px;--lr:70deg;--ld:0s"></i><i class="sp-leaf" aria-hidden="true" style="--lx:64px;--ly:-8px;--lr:110deg;--ld:.3s"></i><i class="sp-leaf" aria-hidden="true" style="--lx:16px;--ly:-24px;--lr:-65deg;--ld:.6s"></i>');}
  if(sn){const snWait=panel.dataset.ch==='1'?5800:0;setTimeout(()=>{if(!sn.isConnected)return;if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){sn.classList.add('go');io.disconnect();}});},{threshold:.3});io.observe(sn);}else{sn.classList.add('go');}},snWait);}
- counter.textContent=`Chapter ${index+1} of ${chapters.length}`;bar.style.width=((index+1)/chapters.length*100)+'%';progress.setAttribute('aria-valuenow',index+1);
- prev.disabled=index===0;next.textContent=index===chapters.length-1?'Back to start 🔄':'Next →';
+ counter.textContent=`Chapter ${index+1} / ${chapters.length}`;bar.style.width=((index+1)/chapters.length*100)+'%';progress.setAttribute('aria-valuenow',index+1);
+ prev.disabled=index===0;next.textContent=index===chapters.length-1?'Shuru se 🔄':'Aage →';
 }
 let busy=false;
 function go(n){
@@ -1998,6 +2088,7 @@ function glideTo(el,block){if(!el)return;setTimeout(()=>{
   window.scrollTo({top:Math.max(0,window.scrollY+y),behavior:reduce?'auto':'smooth'});
   const P=document.getElementById('panel');if(P){P.scrollTop=0;P.scrollLeft=0;}
  },80);}
+window.glideTo=glideTo;
 function sprinkle(chars,count){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;for(let i=0;i<(count||12);i++){const s=document.createElement('span');s.className='sprinkle';s.textContent=chars[Math.floor(Math.random()*chars.length)];s.style.left=(8+Math.random()*84)+'vw';s.style.top=(48+Math.random()*30)+'vh';document.body.appendChild(s);setTimeout(()=>s.remove(),1400);}}
 document.addEventListener('keydown',e=>{if(!document.body.classList.contains('opened'))return;if(e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==='ArrowRight'&&index<chapters.length-1)go(index+1);if(e.key==='ArrowLeft'&&index>0)go(index-1);});
 window.__kassuEnter=()=>{if(index===0)render();playTurn('next');};
@@ -2335,7 +2426,7 @@ var C=['1 free hug 🫂','1 momos date 🥟','1 long drive 🚗','1 maafi, no qu
 window.__giftExtra=function(n){var x=document.getElementById('giftExtra');if(!x)return;var h='';
  if(n===8){C.forEach(function(c){h+='<button class="cpn" type="button" data-cpn="1">'+c+'</button>';});}
  else if(n===9){OW.forEach(function(o,i){h+='<button class="cpn" type="button" data-ow="'+i+'">'+o[0]+'</button>';});h+='<div class="soft-note" id="owText" style="margin-top:8px" hidden></div>';}
- else if(n===10){h='<img class="gx-img" src="riya1.jpg" alt="" onerror="this.remove()"><img class="gx-img" src="riya2.jpg" alt="" onerror="this.remove()"><img class="gx-img" src="riya3.jpg" alt="" onerror="this.remove()"><audio controls style="width:100%;margin-top:8px" src="voice.mp3" onerror="this.remove()"></audio>';}
+ else if(n===10){h='<div class="gx-wrap"><img class="gx-img" src="riya1.jpg" alt="" onerror="this.parentNode.remove()"><div class="gx-cap">Meri princess 👑</div></div><div class="gx-wrap"><img class="gx-img" src="riya2.jpg" alt="" onerror="this.parentNode.remove()"><div class="gx-cap">Ye smile meri battery hai 🔋💗</div></div><div class="gx-wrap"><img class="gx-img" src="riya3.jpg" alt="" onerror="this.parentNode.remove()"><div class="gx-cap">Meri jaan 🖤</div></div>';}
  x.innerHTML=h;};
 document.addEventListener('click',function(e){var b=e.target.closest?e.target.closest('button,a'):null;if(!b)return;
  if(b.id==='noBtn'){e.preventDefault();return;}
@@ -2346,7 +2437,7 @@ document.addEventListener('click',function(e){var b=e.target.closest?e.target.cl
  var ow=b.getAttribute('data-ow');if(ow!==null){var t=document.getElementById('owText');if(t){t.hidden=false;t.textContent=OW[+ow][1];}return;}
  var a=b.getAttribute('data-action');
  if(a==='lockCheck')check();
- if(a==='waSend'){var t2=document.getElementById('thoughts'),v=(t2&&t2.value||'').trim();window.open(waUrl('Mujhe kuch kehna hai 💭\n\n'+(v||'Bas tumhe yaad kar rahi thi 🖤')),'_blank');}
+ if(a==='waSend'){var t2=document.getElementById('thoughts'),v=(t2&&t2.value||'').trim();window.goWA(waUrl('Mujhe kuch kehna hai 💭\n\n'+(v||'Bas tumhe yaad kar rahi thi 🖤')));}
  if(a==='propYes'){var pb=document.getElementById('propBtns'),pr=document.getElementById('propRes');if(pb)pb.hidden=true;if(pr){pr.hidden=false;pr.scrollIntoView({behavior:'smooth',block:'center'});}confetti(90);if(navigator.vibrate){try{navigator.vibrate([60,40,60]);}catch(_){}}}
 });
 document.addEventListener('keydown',function(e){if(e.target&&e.target.id==='lockIn'&&e.key==='Enter'){e.preventDefault();check();}});
@@ -2362,7 +2453,7 @@ water:'Ek glass paani abhi, jaan. Dheere dheere sip lo. Tum sabke liye itna soch
 shoulders:'Kandhe kaano se door karo, jaw dheeli karo, aur mutthi khol do. Dekho, kitna bojh tum bina bataye uthaye ghoom rahi thi. Ab ek gehri saans lo aur chhod do 🤍',
 hug:'Aao, yahan aao. Ek tight wala hug, jitna lamba tum chaho. Main kuch nahi poochunga, bas pakde rahunga jab tak tum kahogi 🫂',
 rest:'Aankhein band karo, phone ek taraf rakh do. Duniya 10 minute tumhare bina bhi chal legi, main sab sambhal lunga. Rest ke liye kisi reason ki zaroorat nahi, princess 🌙'};
-var tone={water:'happy',shoulders:'khush',hug:'alone',rest:'tired'};
+var tone={water:'cw',shoulders:'cs',hug:'ch',rest:'cr'};
 var tm=null,iv=null;
 function stop(){clearTimeout(tm);clearInterval(iv);tm=iv=null;}
 function start(){
@@ -2381,6 +2472,73 @@ document.addEventListener('click',function(e){
  try{glideTo(el,'center');}catch(_){}
 });
 })();
+</script>
+
+<script>
+(function(){
+var NUM='917717587757';
+function burst(list,n,dir,dur){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ for(var i=0;i<n;i++){(function(i){setTimeout(function(){var e=document.createElement('span');e.className='fxpop';e.textContent=list[Math.floor(Math.random()*list.length)];
+  var down=dir==='down';e.style.left=(8+Math.random()*84)+'vw';e.style[down?'top':'bottom']=(down?'-6vh':'8vh');
+  e.style.setProperty('--dy',(down?'':'-')+(260+Math.random()*260)+'px');e.style.setProperty('--dx',(Math.random()*80-40)+'px');e.style.setProperty('--rot',(Math.random()*60-30)+'deg');
+  e.style.fontSize=(18+Math.random()*16)+'px';if(dur)e.style.animationDuration=dur+'s';document.body.appendChild(e);setTimeout(function(){e.remove();},(dur||2.6)*1000+300);},i*(dur?220:90));})(i);}}catch(_){}}
+function toast(t,ms){var o=document.querySelector('.fxtoast');if(o)o.remove();var d=document.createElement('div');d.className='fxtoast';d.textContent=t;d.addEventListener('click',function(){d.remove();});document.body.appendChild(d);setTimeout(function(){if(d.isConnected)d.remove();},ms||5500);}
+var GF=[['💗','💖','✨'],['🥟','☁️','🔥','✨'],['✨','💜','🌙','⭐'],['🚗','🌿','✈️','🌅'],['🌷','🌸','✨'],['🫶','💗','🤍'],['🐱','🐾','💗'],['⭐','🎶','✨','💫'],['🎟️','🎉','✨'],['💌','🤍','✨'],['📸','💗','✨']];
+var old=window.__giftExtra;
+window.__giftExtra=function(n){if(old)old(n);burst(GF[n]||['✨'],14,n===4||n===8?'down':'up');};
+var CF={water:['💧','💙','✨'],shoulders:['🌿','✨','🤍'],hug:['🫂','💗','💖'],rest:['🌙','⭐','✨','💤']};
+document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;
+ var c=t.closest('[data-care]');if(c){burst(CF[c.getAttribute('data-care')]||['✨'],8,'up',4.6);return;}
+ var r=t.closest('.rs-card');if(r){if(!r.classList.contains('on')){r.classList.add('on');burst(['💗','✨','💖'],8,'up');}
+   var all=document.querySelectorAll('.rs-card'),on=document.querySelectorAll('.rs-card.on'),ct=document.getElementById('rsCount');
+   if(ct)ct.textContent=on.length+' / '+all.length+' wajahein mili ✨';
+   if(all.length&&on.length===all.length){var b=document.getElementById('rsBonus');if(b&&b.hidden){b.hidden=false;burst(['💗','🎁','✨','💖','🖤'],26,'up');if(typeof confetti==='function'){try{confetti(30);}catch(_){}}}}return;}
+ var pc=t.closest('.plan-chip');if(pc){pc.classList.toggle('on');var n=document.querySelectorAll('.plan-chip.on').length;
+   var pcnt=document.getElementById('planCount');if(pcnt)pcnt.textContent='Wishlist me abhi '+n+' cheezein 💗';
+   var sb=document.getElementById('planSend');if(sb)sb.disabled=n===0;if(pc.classList.contains('on'))burst(['🚗','✨','💗'],5,'up');return;}
+ if(t.closest('#planSend')){var items=[].map.call(document.querySelectorAll('.plan-chip.on'),function(x){return '• '+x.getAttribute('data-plan');});
+   if(!items.length)return;var msg='Meri ghumne ki wishlist 💗\n'+items.join('\n')+'\n\nJaan, kab chal rahe hain? 🥰';
+   window.goWA('https://wa.me/'+NUM+'?text='+encodeURIComponent(msg));return;}
+ 
+});
+/* secret easter egg: tap the name on the cover 5 times */
+var taps=0,tt=null;
+document.addEventListener('click',function(e){var n=e.target&&e.target.closest?e.target.closest('#coverName'):null;if(!n)return;
+ taps++;clearTimeout(tt);tt=setTimeout(function(){taps=0;},3500);
+ if(taps>=5){taps=0;burst(['💗','🖤','✨','💖'],30,'up');toast('Psst… Riya 🥺 tumne mera secret dhundh liya: tum meri sabse favourite ho, hamesha. Ab chalo andar, aur bhi surprises hain 😘🖤',7000);}
+});
+})();
+</script>
+
+<script>
+(function(){
+var pn=document.getElementById('panel');
+function sync(){var dm=document.getElementById('letterDM'),pr=document.getElementById('propRes');
+ var wait=!!(dm&&!dm.hidden&&pr&&pr.hidden);document.body.classList.toggle('prop-wait',wait);}
+if(pn)new MutationObserver(sync).observe(pn,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});
+document.addEventListener('click',function(e){var b=e.target&&e.target.closest?e.target.closest('[data-action="propYes"]'):null;if(!b)return;
+ setTimeout(function(){var a=document.getElementById('finalActions');if(a)a.hidden=false;sync();},50);});
+})();
+</script>
+
+<script>
+document.addEventListener('click',function(e){var c=e.target&&e.target.closest?e.target.closest('.choice[data-mood],.choice[data-care]'):null;if(!c||!c.parentNode)return;
+ [].forEach.call(c.parentNode.querySelectorAll('.picked'),function(x){x.classList.remove('picked');});c.classList.add('picked');});
+</script>
+
+<script>
+document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;
+ if(t.closest('[data-care]')){var bb=document.getElementById('backToCare');if(bb)bb.hidden=false;return;}
+ if(t.closest('[data-action="backToCare"]')){var g=document.querySelector('.care-grid');if(g&&window.glideTo)window.glideTo(g,'start');}
+});
+</script>
+
+
+<script>
+/* WhatsApp: normal site = same tab; inside a preview frame (where WhatsApp is blocked from loading) = new tab */
+window.goWA=function(u){try{if(window.top!==window){window.open(u,'_blank');return;}}catch(_){window.open(u,'_blank');return;}window.location.href=u;};
+document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[href*="wa.me"]'):null;if(!a)return;
+ try{if(window.top!==window){e.preventDefault();window.open(a.href,'_blank');}}catch(_){e.preventDefault();window.open(a.href,'_blank');}});
 </script>
 </body>
 </html>
