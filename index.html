@@ -1506,7 +1506,36 @@ body.prop-wait .nav{visibility:hidden}
 #careMessage .care-badge{display:block;position:relative;z-index:1;font-size:32px;margin-bottom:6px;animation:floatY 3.2s ease-in-out infinite}
 @keyframes softGlow{0%,100%{filter:drop-shadow(0 0 6px rgba(var(--tc),.4))}50%{filter:drop-shadow(0 0 22px rgba(var(--tc),.95))}}
 @keyframes floatY{50%{transform:translateY(-6px)}}
-@keyframes propIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}.prop-res:not([hidden])>*{animation:propIn 1s ease both}.prop-res:not([hidden])>:nth-child(1){animation-delay:.3s}.prop-res:not([hidden])>:nth-child(2){animation-delay:1.2s}.prop-res:not([hidden])>:nth-child(3){animation-delay:2.4s}.prop-res:not([hidden])>:nth-child(4){animation-delay:3.3s}.prop-res:not([hidden])>:nth-child(5){animation-delay:4.2s}#finalActions:not([hidden]){animation:propIn 1s ease 5.2s both}@media(prefers-reduced-motion:reduce){.prop-res>*,#finalActions{animation:none!important}}</style>
+@keyframes propIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}.prop-res:not([hidden])>*{animation:propIn 1s ease both}.prop-res:not([hidden])>:nth-child(1){animation-delay:.3s}.prop-res:not([hidden])>:nth-child(2){animation-delay:1.2s}.prop-res:not([hidden])>:nth-child(3){animation-delay:2.4s}.prop-res:not([hidden])>:nth-child(4){animation-delay:3.3s}.prop-res:not([hidden])>:nth-child(5){animation-delay:4.2s}#finalActions:not([hidden]){animation:propIn 1s ease 5.2s both}@media(prefers-reduced-motion:reduce){.prop-res>*,#finalActions{animation:none!important}}
+
+/* ===== GIFT / MOOD / CARE BOXES v3: glass polish, corner star, tap pop + ring ===== */
+.gift,.choice[data-mood],.choice[data-care]{position:relative}
+.gift:not(.opened),.choice[data-mood]:not(.picked),.choice[data-care]:not(.picked){
+ background-image:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,0) 48%)!important;
+ border-color:rgba(238,222,255,.5)!important;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 5px 16px rgba(20,5,50,.22)!important}
+.gift::before,.choice[data-mood]::before,.choice[data-care]::before{content:"\2726";position:absolute;top:8px;right:11px;font-size:11px;line-height:1;pointer-events:none;
+ color:rgba(255,244,255,.9);text-shadow:0 0 6px rgba(255,220,255,.9);animation:gStar 3.4s ease-in-out infinite;transition:opacity .4s}
+.gift:nth-child(2n)::before,.choice:nth-child(2n)::before{animation-delay:.9s}
+.gift:nth-child(3n)::before,.choice:nth-child(3n)::before{animation-delay:1.8s}
+@keyframes gStar{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.15) rotate(12deg)}}
+.gift.opened::before,.choice[data-mood].picked::before,.choice[data-care].picked::before{animation:none;opacity:0}
+.gift small{letter-spacing:.2px}
+.gift .emoji,.choice[data-mood] .emoji,.choice[data-care] .emoji{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0 0 7px -3px;border-radius:50%;
+ background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(255,255,255,.05) 55%,rgba(255,255,255,.09));
+ border:1px solid rgba(255,255,255,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -6px 10px rgba(255,255,255,.04),0 3px 10px rgba(20,5,50,.18)}
+.gift:not(.opened)::after,.choice[data-mood]:not(.picked)::after,.choice[data-care]:not(.picked)::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;
+ background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.17) 50%,transparent 60%) no-repeat;background-size:260% 100%;background-position:100% 0;
+ animation:gShim 6.5s ease-in-out infinite}
+.gift:nth-child(2n)::after,.choice:nth-child(2n)::after{animation-delay:1.2s}
+.gift:nth-child(3n)::after,.choice:nth-child(3n)::after{animation-delay:2.4s}
+@keyframes gShim{0%,68%{background-position:100% 0}100%{background-position:0 0}}
+#giftMessage.show,#moodMessage.show,#careMessage.show{animation:gMsgPop .6s cubic-bezier(.3,1.5,.5,1)}
+#giftMessage.show::before,#moodMessage.show::before,#careMessage.show::before{border:2px solid rgba(var(--tc,255,150,215),.9);animation:gMsgRing .9s ease-out forwards}
+@keyframes gMsgPop{0%{transform:scale(.94)}55%{transform:scale(1.035)}100%{transform:scale(1)}}
+@keyframes gMsgRing{0%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.gift::after,.choice[data-mood]::after,.choice[data-care]::after{animation:none;display:none}.gift::before,.choice[data-mood]::before,.choice[data-care]::before{animation:none}#giftMessage.show,#moodMessage.show,#careMessage.show{animation:none}#giftMessage.show::before,#moodMessage.show::before,#careMessage.show::before{display:none}}
+</style>
 </head>
 <body>
 <div class="sky-shade" aria-hidden="true"></div>
@@ -1573,17 +1602,17 @@ const chapters = [
 {label:"Tiny surprise gifts",render:()=>`
 <div class="eyebrow">tap karke kholo 🎁</div><h2>Chhote-chhote gifts, sirf meri Riya ke liye</h2><p>Har box me ek alag baat chhupi hai. Tum sab khol sakti ho, ya bas apna favourite choose kar lo, princess.</p>
 <div class="gift-grid">
-<button class="gift" data-gift="0"><span class="emoji">💌</span><strong>Kind words</strong><small>tap karo</small></button>
-<button class="gift" data-gift="1"><span class="emoji">🥟</span><strong>Momos break</strong><small>tap karo</small></button>
-<button class="gift" data-gift="2"><span class="emoji">🖤</span><strong>Black, tumhara rang</strong><small>tap karo</small></button>
-<button class="gift" data-gift="3"><span class="emoji">🌿</span><strong>Ghumne ka mood</strong><small>tap karo</small></button>
-<button class="gift" data-gift="4"><span class="emoji">🌷</span><strong>Soft day</strong><small>tap karo</small></button>
-<button class="gift" data-gift="5"><span class="emoji">🫶</span><strong>Care note</strong><small>tap karo</small></button>
-<button class="gift" data-gift="6"><span class="emoji">🐱</span><strong>Cute cats</strong><small>tap karo</small></button>
-<button class="gift" data-gift="7"><span class="emoji">🎶</span><strong>Ishq Hua</strong><small>tap karo</small></button>
-<button class="gift" data-gift="8"><span class="emoji">🎟️</span><strong>Love coupons</strong><small>tap karo</small></button>
-<button class="gift" data-gift="9"><span class="emoji">💌</span><strong>Open when…</strong><small>tap karo</small></button>
-<button class="gift" data-gift="10"><span class="emoji">📸</span><strong>Meri Riya</strong><small>tap karo</small></button>
+<button class="gift" data-gift="0"><span class="emoji">💌</span><strong>Kind words</strong><small>♡ tap karo</small></button>
+<button class="gift" data-gift="1"><span class="emoji">🥟</span><strong>Momos break</strong><small>♡ tap karo</small></button>
+<button class="gift" data-gift="2"><span class="emoji">🖤</span><strong>Black, tumhara rang</strong><small>♡ tap karo</small></button>
+<button class="gift" data-gift="3"><span class="emoji">🌿</span><strong>Ghumne ka mood</strong><small>♡ tap karo</small></button>
+<button class="gift" data-gift="4"><span class="emoji">🌷</span><strong>Soft day</strong><small>♡ tap karo</small></button>
+<button class="gift" data-gift="5"><span class="emoji">🫶</span><strong>Care note</strong><small>♡ tap karo</small></button>
+<button class="gift" data-gift="6"><span class="emoji">🐱</span><strong>Cute cats</strong><small>♡ tap karo</small></button>
+<button class="gift" data-gift="7"><span class="emoji">🎶</span><strong>Ishq Hua</strong><small>♡ tap karo</small></button>
+<button class="gift" data-gift="8"><span class="emoji">🎟️</span><strong>Love coupons</strong><small>♡ tap karo</small></button>
+<button class="gift" data-gift="9"><span class="emoji">💌</span><strong>Open when…</strong><small>♡ tap karo</small></button>
+<button class="gift" data-gift="10"><span class="emoji">📸</span><strong>Meri Riya</strong><small>♡ tap karo</small></button>
 
 
 
@@ -2064,7 +2093,7 @@ prev.addEventListener('click',()=>go(index-1));next.addEventListener('click',()=
 panel.addEventListener('click',e=>{
  const b=e.target.closest('button');if(!b)return;
  if(b.dataset.mood){const el=document.getElementById('moodMessage');showTouch(el,moodText[b.dataset.mood],b.dataset.mood);setMoodFx(b.dataset.mood==='khush'?'happy':b.dataset.mood==='miss'?'alone':b.dataset.mood);const bm=document.getElementById('backToMoods');if(bm)bm.hidden=false;glideTo(el,'center');return;}
- if(b.dataset.gift!==undefined){const n=Number(b.dataset.gift), el=document.getElementById('giftMessage');showTouch(el,gifts[n],'g'+n);if(window.__giftExtra)window.__giftExtra(n);b.classList.add('opened');b.querySelector('small').textContent='opened with care 💗';setMoodFx('g'+n);if(n===7){showSong();const st=document.createElement('div');st.className='shoot-open';document.body.appendChild(st);setTimeout(()=>st.remove(),2800);}const bk=document.getElementById('backToGifts');if(bk)bk.hidden=false;glideTo(el,n===7?'start':'center');return;}
+ if(b.dataset.gift!==undefined){const n=Number(b.dataset.gift), el=document.getElementById('giftMessage');showTouch(el,gifts[n],'g'+n);if(window.__giftExtra)window.__giftExtra(n);b.classList.add('opened');b.querySelector('small').textContent='♥ opened with care';setMoodFx('g'+n);if(n===7){showSong();const st=document.createElement('div');st.className='shoot-open';document.body.appendChild(st);setTimeout(()=>st.remove(),2800);}const bk=document.getElementById('backToGifts');if(bk)bk.hidden=false;glideTo(el,n===7?'start':'center');return;}
  if(b.dataset.action==='backToGifts'){const g=panel.querySelector('.gift-grid');if(g)glideTo(g,'start');return;}
  if(b.dataset.action==='backToMoods'){const g=panel.querySelector('.mood-grid');if(g)glideTo(g,'start');return;}
  if(b.dataset.action==='openLetter'){startLetter();return;}
