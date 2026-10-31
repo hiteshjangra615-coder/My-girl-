@@ -1572,6 +1572,16 @@ body.prop-wait .nav{visibility:hidden}
 .lk-fin{line-height:1.7;margin:0}
 .hint{border-color:rgba(var(--hc,110,205,255),.75)!important}
 .hint.open{background:rgba(var(--hc,110,205,255),.24)!important;border-color:rgba(var(--hc,110,205,255),.98)!important;color:#fff;box-shadow:0 0 14px rgba(var(--hc,110,205,255),.4),inset 0 0 12px rgba(var(--hc,110,205,255),.14)}
+.lk.lk-tap{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lk.lk-tap:active{transform:scale(1.25)}
+.lk.rv{transform:scale(1.3);filter:drop-shadow(0 0 8px rgba(255,214,120,1))}
+.lk-ans{margin:10px 0 12px;padding:10px 12px;border-radius:14px;background:rgba(255,214,120,.14);border:1px solid rgba(255,214,120,.6);font-weight:600}
+.lk.lk-tap{background:rgba(255,214,120,.16);border:1px solid rgba(255,214,120,.6);border-radius:10px;padding:5px 7px;margin:0;font-size:16px;box-shadow:0 0 10px rgba(255,214,120,.25)}
+.lk-tip{margin:-4px 0 10px;font-size:12px;opacity:.8}
+.lk-gate{margin-top:10px;padding:10px 12px;border-radius:14px;text-align:center;font-weight:600;background:rgba(255,214,120,.15);border:1px solid rgba(255,214,120,.65);animation:lkHint .4s ease-out}
+#lockBox.lk-nudge{animation:lkNudge .45s ease-in-out}
+@keyframes lkNudge{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}45%{transform:translateX(7px)}70%{transform:translateX(-4px)}}
+#next.lk-wait{opacity:.8}
 @media(prefers-reduced-motion:reduce){#lockBox.lk-in,#lockBox.lk-pop,#lockBox.lk-out,.lk,.lk.cur,.lk.lk-click,.hint.shake,.hint.open,.lk-big{animation:none!important}.lkw{opacity:1;transform:none;animation:none}}
 </style>
 </head>
@@ -2082,6 +2092,7 @@ function render(){
 let busy=false;
 function go(n){
  if(busy)return;
+ if(chapters[index]&&chapters[index].label==='Secret lock'&&n>index&&window.__lockPassed&&!window.__lockPassed()){if(window.__lockNudge)window.__lockNudge();return;}
  const target=Math.max(0,Math.min(chapters.length-1,n));
  if(target===index&&n!==0)return;
  const dir=target>=index?'next':'prev';
@@ -2483,20 +2494,46 @@ var Q=[
 {q:'Duniya ki sabse chhoti kahani, jo sirf teen shabdon me poori ho jaati hai. Ye main tumhe aankhon se, gaano se aur dher saare emoji se bol chuka hoon, par jis din tum chaho, main ise roz bolunga, bina thake. Wo kaun se teen shabd hain?',h:['Pehla shabd sirf ek akshar: main 🙋','Doosra shabd har filmi gaane me aata hai','Teesra shabd: jise main Hindi me ‘tum’ bolta hoon 🫵','Teeno shabdon me kul 8 akshar hain, aur Valentine cards par sabse zyada yahi likha milta hai 🖤'],a:['iloveyou','loveyou','ilu','iluu','iloveu','ilvyou'],s:'I love you 🖤'}
 ];
 var W=['Hehe, close! Ek aur try karo jaan 🥺','Arre nahi baby, dimaag ki batti jalao 💡','Hint dekh lo na princess 😏','Uff, cute galti 🙈'],R=['Yesss! Meri smart Riya 🥳','Wah wah! Tum to genius ho betuu 🖤','Correct! Reward: ek virtual kiss 😘','Sahi pakda, jaan! 💗'];
-var qi=0,wr=0,state='ask';
+var qi=0,wr=0,state='ask',view=-1,draft='',hOpen={};
+var LS_P='kassu_lock_qi_v1',LS_D='kassu_lock_done_v1',memD=false;
+function lsGet(k){try{return localStorage.getItem(k);}catch(_){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,v);}catch(_){}}
+function passed(){return memD||lsGet(LS_D)==='1';}
+function setPassed(){memD=true;lsSet(LS_D,'1');}
+window.__lockPassed=passed;
 function nz(x){return String(x).toLowerCase().replace(/[^a-z0-9]/g,'');}
-function lkRow(done,cur){var h='<div class="lk-row">';for(var i=0;i<Q.length;i++){var c=i<done?'on':(i===cur?'cur':'');h+='<span class="lk '+c+'">'+(i<done?'\uD83D\uDD13':'\uD83D\uDD12')+'</span>';}return h+'</div>';}
+function lkRow(done,cur,rv){var h='<div class="lk-row">';for(var i=0;i<Q.length;i++){var c=i<done?'on':(i===cur?'cur':''),tap=(i<done&&cur>=0);if(tap)c+=' lk-tap';if(i===rv)c+=' rv';h+='<span class="lk '+c+'"'+(tap?' data-lk="'+i+'" role="button" tabindex="0" aria-label="Paheli '+(i+1)+' dobara dekho"':'')+'>'+(i<done?'\uD83D\uDD13':'\uD83D\uDD12')+'</span>';}return h+'</div>';}
 function lkWords(el,t,base){if(!el)return;var w=t.split(' '),d=Math.min(38,1900/w.length);el.textContent='';w.forEach(function(x,i){var s=document.createElement('span');s.className='lkw';s.style.animationDelay=((base||0)+i*d)+'ms';s.textContent=x;el.appendChild(s);});}
-function draw(){var box=document.getElementById('lockBox');if(!box)return;
- box.classList.remove('lk-out','lk-pop','lk-in');void box.offsetWidth;box.classList.add('lk-in');
- if(qi>=Q.length){box.classList.add('lk-final');box.innerHTML=lkRow(Q.length,-1)+'<div class="lk-big">\uD83D\uDD13</div><p class="lk-title"><strong>Secret unlock ho gaya!</strong></p><p class="lk-fin" id="lkFin"></p>';lkWords(document.getElementById('lkFin'),'Riya, ye website sirf ek bahana thi. Mujhe bas tumse ye kehna tha: tum meri duniya ho, meri jaan. Reward: aaj call par ek tight virtual hug, aur momos treat mujhse maango haq se \uD83D\uDDA4\uD83E\uDD5F',900);setTimeout(function(){confetti(80);},500);if(navigator.vibrate){try{navigator.vibrate([60,40,60]);}catch(_){}}return;}
+function draw(quiet){var box=document.getElementById('lockBox');if(!box)return;
+ view=-1;if(!quiet)draft='';
+ box.classList.remove('lk-out','lk-pop','lk-in','lk-final','lk-nudge');void box.offsetWidth;box.classList.add('lk-in');
+ if(qi>=Q.length){box.classList.add('lk-final');box.innerHTML=lkRow(Q.length,-1)+'<div class="lk-big">\uD83D\uDD13</div><p class="lk-title"><strong>Secret unlock ho gaya!</strong></p><p class="lk-fin" id="lkFin"></p><div class="actions"><button class="btn" data-action="lkNext" type="button">Aage chalo \u2192</button></div>';setPassed();syncNext();lkWords(document.getElementById('lkFin'),'Riya, ye website sirf ek bahana thi. Mujhe bas tumse ye kehna tha: tum meri duniya ho, meri jaan. Reward: aaj call par ek tight virtual hug, aur momos treat mujhse maango haq se \uD83D\uDDA4\uD83E\uDD5F',900);setTimeout(function(){confetti(80);},500);if(navigator.vibrate){try{navigator.vibrate([60,40,60]);}catch(_){}}return;}
  var q=Q[qi],h='';for(var k=0;k<4;k++)h+='<button class="hint" type="button" data-hint="'+k+'">Hint '+(k+1)+' \uD83D\uDD12</button>';
- box.innerHTML='<p class="lk-cnt"><strong>Paheli '+(qi+1)+' of '+Q.length+'</strong></p>'+lkRow(qi,qi)+'<div class="lock-q" id="lkQ"></div><div class="hint-row" style="--hc:'+HC[qi%HC.length]+'">'+h+'</div><textarea class="thoughts lock-in" id="lockIn" placeholder="Answer likho, jaan\u2026" aria-label="Answer"></textarea><div class="actions"><button class="btn" data-action="lockCheck" type="button">Unlock \uD83D\uDD13</button></div><div id="lockMsg" style="margin-top:8px;font-weight:600"></div>';
- lkWords(document.getElementById('lkQ'),q.q,0);state='ask';}
+ box.innerHTML='<p class="lk-cnt"><strong>Paheli '+(qi+1)+' of '+Q.length+'</strong></p>'+lkRow(qi,qi)+(qi>0?'<div class="lk-tip">\uD83D\uDD13 pe tap karke pichla sawaal dekho</div>':'')+'<div class="lock-q" id="lkQ"></div><div class="hint-row" style="--hc:'+HC[qi%HC.length]+'">'+h+'</div><textarea class="thoughts lock-in" id="lockIn" placeholder="Answer likho, jaan\u2026" aria-label="Answer"></textarea><div class="actions"><button class="btn" data-action="lockCheck" type="button">Unlock \uD83D\uDD13</button></div><div id="lockMsg" style="margin-top:8px;font-weight:600"></div>';
+ var qe=document.getElementById('lkQ');if(quiet)qe.textContent=q.q;else lkWords(qe,q.q,0);state='ask';
+ (hOpen[qi]||[]).forEach(function(k){var hb=box.querySelector('[data-hint="'+k+'"]');if(hb){hb.textContent=q.h[k];hb.classList.add('open');hb.style.animation='none';}});
+ if(quiet&&draft){var li=document.getElementById('lockIn');if(li)li.value=draft;}}
+function showReview(i){var box=document.getElementById('lockBox');if(!box||lockBusy||qi>=Q.length||i<0||i>=qi)return;
+ var inp=document.getElementById('lockIn');if(inp&&view<0)draft=inp.value;
+ view=i;box.classList.remove('lk-out','lk-pop','lk-in','lk-nudge');void box.offsetWidth;box.classList.add('lk-in');
+ box.innerHTML='<p class="lk-cnt"><strong>Paheli '+(i+1)+' of '+Q.length+' \u00B7 dobara padh rahi ho \uD83D\uDC97</strong></p>'+lkRow(qi,qi,i)+'<div class="lock-q" id="lkQ"></div><div class="lk-ans">Jawab: '+Q[i].s+'</div><div class="actions"><button class="btn secondary" data-action="lkBack" type="button">\u2190 Abhi wale sawaal pe wapas</button></div>';
+ document.getElementById('lkQ').textContent=Q[i].q;}
+function lkBack(){if(view<0)return;view=-1;draw(true);}
+var FIN='Riya, ye website sirf ek bahana thi. Mujhe bas tumse ye kehna tha: tum meri duniya ho, meri jaan. Reward: aaj call par ek tight virtual hug, aur momos treat mujhse maango haq se \uD83D\uDDA4\uD83E\uDD5F';
+function drawDone(){var box=document.getElementById('lockBox');if(!box)return;
+ view=-1;box.classList.remove('lk-out','lk-pop','lk-in','lk-nudge');void box.offsetWidth;box.classList.add('lk-in','lk-final');
+ box.innerHTML=lkRow(Q.length,-1)+'<div class="lk-big">\uD83D\uDD13</div><p class="lk-title"><strong>Ye lock tum pehle hi khol chuki ho</strong></p><p class="lk-fin">'+FIN+'</p><div class="actions"><button class="btn" data-action="lkNext" type="button">Aage chalo \u2192</button><button class="btn secondary" data-action="lkReplay" type="button">Phir se khelo \uD83D\uDD01</button></div>';}
+function syncNext(){var n=document.getElementById('next');if(!n)return;if(document.getElementById('lockBox')&&!passed()){n.classList.add('lk-wait');n.textContent='\uD83D\uDD10 Pehle lock kholo';}else{n.classList.remove('lk-wait');if(n.textContent.indexOf('\uD83D\uDD10')===0)n.textContent='Aage \u2192';}}
+window.__lockNudge=function(){var box=document.getElementById('lockBox');if(!box)return;box.classList.remove('lk-nudge');void box.offsetWidth;box.classList.add('lk-nudge');
+ var g=document.getElementById('lkGate');if(!g){g=document.createElement('div');g.id='lkGate';g.className='lk-gate';box.appendChild(g);}
+ g.textContent='Pehle secret lock kholo jaan, phir aage ke surprises \uD83D\uDD10\uD83D\uDC97';clearTimeout(g._t);g._t=setTimeout(function(){if(g.parentNode)g.parentNode.removeChild(g);},3500);
+ try{box.scrollIntoView({behavior:'smooth',block:'center'});}catch(_){}};
+document.addEventListener('click',function(e){var t=e.target&&e.target.closest?e.target.closest('[data-lk]'):null;if(!t)return;showReview(+t.getAttribute('data-lk'));});
+document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')return;var t=e.target&&e.target.closest?e.target.closest('[data-lk]'):null;if(!t)return;e.preventDefault();showReview(+t.getAttribute('data-lk'));});
 var lockBusy=false;
 function check(){var inp=document.getElementById('lockIn'),m=document.getElementById('lockMsg');if(!inp||!m||lockBusy||!Q[qi])return;var u=nz(inp.value);if(!u)return;var q=Q[qi];
- if(q.a.some(function(v){return u===v||u.indexOf(v)>-1;})){lockBusy=true;m.textContent=R[qi%R.length];inp.classList.add('lk-ok');var cur=document.querySelector('#lockBox .lk.cur'),bx=document.getElementById('lockBox');if(cur){cur.classList.remove('cur');cur.classList.add('on','lk-click');cur.textContent='\uD83D\uDD13';}if(bx){bx.classList.remove('lk-pop');void bx.offsetWidth;bx.classList.add('lk-pop');}if(navigator.vibrate){try{navigator.vibrate(40);}catch(_){}}confetti(24);qi++;wr=0;setTimeout(function(){if(bx)bx.classList.add('lk-out');},1500);setTimeout(function(){lockBusy=false;draw();},1850);}
- else{wr++;if(wr>=4){lockBusy=true;m.textContent='Koi baat nahi baby, answer hai: '+q.s+' 🥹 Chalo next!';qi++;wr=0;var bx2=document.getElementById('lockBox');setTimeout(function(){if(bx2)bx2.classList.add('lk-out');},2250);setTimeout(function(){lockBusy=false;draw();},2600);}else m.textContent=W[Math.floor(Math.random()*W.length)];}}
+ if(q.a.some(function(v){return u===v||u.indexOf(v)>-1;})){lockBusy=true;m.textContent=R[qi%R.length];inp.classList.add('lk-ok');var cur=document.querySelector('#lockBox .lk.cur'),bx=document.getElementById('lockBox');if(cur){cur.classList.remove('cur');cur.classList.add('on','lk-click');cur.textContent='\uD83D\uDD13';}if(bx){bx.classList.remove('lk-pop');void bx.offsetWidth;bx.classList.add('lk-pop');}if(navigator.vibrate){try{navigator.vibrate(40);}catch(_){}}confetti(24);qi++;wr=0;lsSet(LS_P,String(qi));setTimeout(function(){if(bx)bx.classList.add('lk-out');},1600);setTimeout(function(){lockBusy=false;draw();},1950);}
+ else{wr++;if(wr>=4){lockBusy=true;m.textContent='Koi baat nahi baby, answer hai: '+q.s+' 🥹 Chalo next!';qi++;wr=0;lsSet(LS_P,String(qi));var bx2=document.getElementById('lockBox');setTimeout(function(){if(bx2)bx2.classList.add('lk-out');},2250);setTimeout(function(){lockBusy=false;draw();},2600);}else m.textContent=W[Math.floor(Math.random()*W.length)];}}
 var noN=0;function runNo(e){var b=document.getElementById('noBtn');if(!b)return;if(e&&e.preventDefault)e.preventDefault();noN++;b.style.transform='translate('+((Math.random()-.5)*Math.min(240,innerWidth-140))+'px,'+((Math.random()-.5)*90)+'px)';var T=['No 🙈','Pakka? 🥺','Soch lo na 😭','Haan bol do 🥹','Bhaag gaya 😂'];b.textContent=T[Math.min(noN,T.length-1)];}
 ['pointerdown','mouseover','touchstart'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target&&e.target.id==='noBtn')runNo(e);},{passive:false});});
 var C=['1 free hug 🫂','1 momos date 🥟','1 long drive 🚗','1 maafi, no questions asked 🥺','1 din sirf tumhari marzi 👑'],OW=[['Jab mujhe miss karo 🥺','Aankhein band karo, ek gehri saans lo, aur wo pal yaad karo jab hum pehli baar mile the. Main bhi wahi soch raha hoon. Ab mujhe call karo 📞🖤'],['Jab gussa aaye 😤','Pehle ek glass paani, phir 10 tak ginti, phir mujhe sab bata do. Main sununga. Aur galti meri hui toh maafi coupon use karna 😅🖤'],['Jab neend na aaye 🌙','Phone ke us paar se main tumhe lori sunaunga (bad voice, but with love). Tab tak soch lo, kal ka din aur bhi pyaara hoga 🌙'],['Jab bore ho 🥱','Smile Corner kholo, ek joke padho aur mujhe bhejo. Dekhte hain kaun zyada lame joke bhejta hai 😂']];
@@ -2510,16 +2547,21 @@ document.addEventListener('click',function(e){var b=e.target.closest?e.target.cl
  if(b.id==='noBtn'){e.preventDefault();return;}
  var st=b.getAttribute('data-st');if(st&&window.__setLines){window.__setLines(st);[].forEach.call(document.querySelectorAll('[data-st]'),function(x){x.classList.toggle('on',x===b);});var r=document.querySelector('[data-action="random"]');if(r){r.disabled=false;r.textContent='Ek aur pyaari baat 🌸';r.click();}return;}
  var op=b.getAttribute('data-opt');if(op!==null){pick(+op,b);return;}
- var hi=b.getAttribute('data-hint');if(hi!==null&&Q[qi]){if(b.classList.contains('open')||b.classList.contains('shake'))return;var qq=qi;b.classList.add('shake');setTimeout(function(){b.classList.remove('shake');if(Q[qq]){b.textContent=Q[qq].h[+hi];b.classList.add('open');}},330);return;}
+ var hi=b.getAttribute('data-hint');if(hi!==null&&Q[qi]){if(b.classList.contains('open')||b.classList.contains('shake'))return;var qq=qi;b.classList.add('shake');setTimeout(function(){b.classList.remove('shake');if(Q[qq]){b.textContent=Q[qq].h[+hi];b.classList.add('open');(hOpen[qq]=hOpen[qq]||[]).push(+hi);}},330);return;}
  if(b.getAttribute('data-cpn')){b.classList.add('used');b.textContent='✅ Redeemed — screenshot bhej do baby 🥰';confetti(14);return;}
  var ow=b.getAttribute('data-ow');if(ow!==null){var t=document.getElementById('owText');if(t){t.hidden=false;t.textContent=OW[+ow][1];}return;}
  var a=b.getAttribute('data-action');
  if(a==='lockCheck')check();
+  if(a==='lkBack')lkBack();
+  if(a==='lkNext'){var nb=document.getElementById('next');if(nb)nb.click();}
+  if(a==='lkReplay'){qi=0;wr=0;hOpen={};lsSet(LS_P,'0');draw();}
  if(a==='waSend'){var t2=document.getElementById('thoughts'),v=(t2&&t2.value||'').trim();window.goWA(waUrl('Mujhe kuch kehna hai 💭\n\n'+(v||'Bas tumhe yaad kar rahi thi 🖤')));}
  if(a==='propYes'){var pb=document.getElementById('propBtns'),pr=document.getElementById('propRes');if(pb)pb.hidden=true;if(pr){pr.hidden=false;pr.scrollIntoView({behavior:'smooth',block:'center'});}confetti(90);if(navigator.vibrate){try{navigator.vibrate([60,40,60]);}catch(_){}}}
 });
 document.addEventListener('keydown',function(e){if(e.target&&e.target.id==='lockIn'&&e.key==='Enter'){e.preventDefault();check();}});
-function init(){if(document.getElementById('lockBox')){qi=0;wr=0;draw();}tick();}
+function init(){if(document.getElementById('lockBox')){wr=0;view=-1;draft='';hOpen={};
+  if(passed()){qi=Q.length;drawDone();}else{var sv=parseInt(lsGet(LS_P),10);qi=(sv>0&&sv<Q.length)?sv:0;draw();}}
+ syncNext();tick();}
 new MutationObserver(init).observe(panel,{childList:true});init();
 })();
 </script>
