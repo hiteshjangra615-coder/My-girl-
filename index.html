@@ -1609,6 +1609,22 @@ body.prop-wait .nav{visibility:hidden}
 .lk-qa-n{font-size:12px;font-weight:700;letter-spacing:.04em;opacity:.85;margin-bottom:4px}
 .lk-qa-q{line-height:1.6;font-size:15px}
 .lk-qa .lk-ans{margin:8px 0 0}
+
+/* ===== Secret surprise box: chapter 1 ke last paragraph jaisa, RED version ===== */
+.soft-note.moon-note.lk-red{margin:12px 0 6px;text-align:left;line-height:1.75;
+ background:radial-gradient(circle at 100% 0%,rgba(255,90,100,.48) 0,rgba(255,80,110,.20) 34%,rgba(255,80,110,0) 64%),linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.015)) !important;
+ border:1px solid rgba(255,92,104,.95) !important;
+ box-shadow:0 0 0 1px rgba(255,255,255,.05),0 0 22px rgba(255,70,90,.58),0 0 46px rgba(255,60,90,.26),inset 0 0 22px rgba(255,90,100,.24),inset 0 1px 0 rgba(255,255,255,.42) !important}
+.lk-red::before{background:radial-gradient(circle,rgba(255,150,150,.68) 0,rgba(255,80,100,.28) 40%,rgba(255,80,100,0) 70%)}
+.lk-red::after{background:linear-gradient(100deg,rgba(255,225,225,0) 0%,rgba(255,225,225,.32) 50%,rgba(255,225,225,0) 100%)}
+.lk-red .mn-star{background:#ffe6e6;filter:drop-shadow(0 0 4px rgba(255,100,110,.95))}
+.lk-red .mn-run .rg{stroke:url(#lkRingGrad);animation:none;opacity:.98;filter:drop-shadow(0 0 5px rgba(255,80,90,.95))}
+.lk-red .mn-run .r1{color:#ffe27a;animation:lkLoopA 7.6s ease-in-out calc(var(--st) - .55s) infinite}
+.lk-red .mn-run .r2{color:#ffb0d6;animation:lkLoopB 7.6s ease-in-out calc(var(--st) - .55s) infinite}
+.lk-red .mn-run .rf{color:#fff0f0;filter:drop-shadow(0 0 8px #ff6b7a);animation:snPulse 7.6s ease-in-out calc(var(--st) - .55s) infinite}
+.soft-note.moon-note.lk-red .mn-k2{background:linear-gradient(90deg,#ffd27a 0%,#ff9aa8 50%,#ffffff 100%) no-repeat 0 100%/0% 2px}
+@keyframes lkLoopA{0%,5%{stroke-dashoffset:0;opacity:0;color:#ffffff}9%{opacity:1;color:#ffe27a}45%{stroke-dashoffset:-32;opacity:1;color:#ffe27a}50%{stroke-dashoffset:-32;opacity:.35;color:#ffffff}55%{stroke-dashoffset:-32;opacity:1;color:#ffffff}91%{opacity:1;color:#ffffff}95%,100%{stroke-dashoffset:0;opacity:0;color:#ffffff}}
+@keyframes lkLoopB{0%,5%{stroke-dashoffset:-82;opacity:0;color:#ffb36b}9%{opacity:1;color:#ffb0d6}45%{stroke-dashoffset:-50;opacity:1;color:#ffb0d6}50%{stroke-dashoffset:-50;opacity:.35;color:#ffb36b}55%{stroke-dashoffset:-50;opacity:1;color:#ffb36b}91%{opacity:1;color:#ffb36b}95%,100%{stroke-dashoffset:-82;opacity:0;color:#ffb36b}}
 </style>
 </head>
 <body>
@@ -1774,7 +1790,7 @@ const SETS={
 joke:["Momos ne chutney se kaha: tum itni teekhi kyun ho? Chutney: Riya jaisi hoon, thodi spicy, bohot special 🌶️🥟","Doctor: tumhe pyaar ki bimari hai. Main: ilaaj? Doctor: Riya se roz baat karna 💊😂","Wifi ne mobile se kaha: tu mere bina adhura hai. Mobile: haan, jaise main Riya ke bina 📶🥺","Riya: main kitni sundar hoon? Google: no results found, ye to unique hai 😂","Black colour: sab mujhse darte kyun hain? Riya ne pehna, sab fida ho gaye 🖤","Ek momo dusre se: sab mujhe kha jaate hain. Dusra: tu kismat wala hai, Riya ke pet me jayega 😭🥟","Neend ne Riya se kaha: so jao. Riya: pehle goodnight call. Neend: ye mere bas ki baat nahi 😴","Battery 1% par: charger do. Main 0% par: Riya ka message do 🔋💗","Math: 1 + 1 = 2. Hum dono: 1 + 1 = 11 🖤","Riya: jab main busy hoti hoon tab tum kya karte ho? Main: wahi jo ghadi karti hai, tumhara intezaar ⏰😂"],
 flirt:["Black tum par itna suit karta hai ki baaki saare colours jealous ho gaye 🖤","Tum smile karti ho toh meri battery 100% ho jaati hai, aur akal 0% 😵‍💫","Google Maps ko mera rasta nahi pata, par mere dil ko pata hai wo tumhare paas jaata hai 🧭","Mujhe momos pasand hain, par tumhe dekhte hi meri bhookh tumhari taraf shift ho jaati hai 😏🥟","Tum meri favourite notification ho 🔔💗","Princess, aaj tum bohot cute lag rahi ho. Pata hai na? 🥰","Mera dil bola: next stop? Dimaag bola: Riya. Dono ka vote ek hi tha 🚉","Tumhare ek line ke reply se mera poora din ban jaata hai, so please bol do miss you 😌","Main tumhe impress karne ki koshish karta hoon, tum bina kuch kiye sab jeet jaati ho 🏆","Tum chai ho toh main hamesha late rahunga, kyunki tumhe pee ke hi jaunga ☕😌"],
 comp:["Tumhari hasi duniya ki sabse pyaari awaaz hai 🎶","Tum itni sundar ho ki aaina bhi sharma jaata hoga 🪞","Tumhara dil sone ka hai, aur tumhari baatein usme jade heere 💎","Tum jahan hoti ho wahan ki hawa bhi thodi softer ho jaati hai 🌸","Tum sirf pyaari nahi, strong bhi ho, aur ye mujhe sabse zyada pasand hai 💪🖤","Tumhari aankhon me ek alag chamak hai, jise dekh kar main bhool jaata hoon ki kya bol raha tha ✨","Tum meri jaan ho, meri princess ho, aur meri favourite insaan ho 👑","Tum mile ho toh lagta hai meri saari duayein ek saath sun li gayi 🙏","Tumhari simplicity me jo jaadu hai, wo kisi makeup me nahi 🥺","Rasmalai se bhi meethi ho tum, aur wo bhi tumse jealous hai 🍮"],
-shayari:["Chand bhi sharma jaaye jab tum muskurati ho, ye dil bas tumhara naam gungunata hai 🌙","Tum mile toh laga adhoori kitaab ko uska sabse pyaara panna mil gaya 📖","Duniya ki bheed me bhi mujhe sirf tum dikhti ho, ye ishq nahi toh aur kya hai, jaan? 🖤","Raaton ki neend ki wajah tumhari yaadein, aur subah ki muskaan ki wajah bhi tum ☀️","Na gulaab chahiye na chaand sitare, bas tum rehna mere paas, har janam me 🌹","Teri baaton me jo sukoon hai wo kisi dawa me nahi, tera saath hi meri har dua ka jawab hai 🤲","Tumhare saath chalna ho toh manzil ki fikr kaun kare, har rasta khoobsurat lagta hai 🛣️","Kisi ne poocha mohabbat ka matlab kya hai, maine tumhara naam liya aur baat khatam ho gayi 💗","Jab bhi tumhe dekhta hoon dil kehta hai: bas yahin ruk jao, waqt bhi aur tum bhi ⏳","Tum meri duniya ho, meri pehchaan ho, meri jaan ho 🖤"]};
+shayari:["Chand bhi sharma jaaye jab tum muskurati ho, ye dil bas tumhara naam gungunata hai 🌙","Tum mile toh laga adhoori kitaab ko uska sabse pyaara panna mil gaya 📖","Duniya ki bheed me bhi mujhe sirf tum dikhti ho, ye ishq nahi toh aur kya hai, jaan? 🖤","Raaton ki neend ki wajah tumhari yaadein, aur subah ki muskaan ki wajah bhi tum ☀️","Na gulaab chahiye na chaand sitare, bas tum rehna mere paas, har janam me 🌹","Teri baaton me jo sukoon hai wo kisi dawa me nahi, tera saath hi meri har dua ka jawab hai 🤲","Tumhare saath chalna ho toh manzil ki fikr kaun kare, har rasta khoobsurat lagta hai 🛣️","Kisi ne poocha mohabbat ka matlab kya hai, maine tumhara naam liya aur baat khatam ho gayi 💗","Jab bhi tumhe dekhta hoon dil kehta hai: bas yahin ruk jao, waqt bhi aur tum bhi ⏳","Tum meri duniya ho, meri pehchaan ho, meri jaan ho 🖤","Suna hai din ke dekhe sapne sach nahi hote, par maine apne sapno ki shehzaadi ko khuli aankhon se dekha hai, wo tum ho 🎀"]};
 let lines=SETS.joke;window.__setLines=k=>{lines=SETS[k]||lines;window.__curSet=k;};
 
 
@@ -2175,7 +2191,7 @@ panel.addEventListener('click',e=>{
   if(b.dataset.action==='skipLetter'){finishLetter();return;}
   if(b.dataset.action==='random'){const el=document.getElementById('randomLine');if(el){
    const key=window.__curSet||'joke';el.__dk=el.__dk||{};
-   let d=el.__dk[key];if(!d){d=el.__dk[key]={left:lines.map((_,i)=>i),n:0};for(let i=d.left.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[d.left[i],d.left[j]]=[d.left[j],d.left[i]];}}
+   let d=el.__dk[key];if(!d){d=el.__dk[key]={left:lines.map((_,i)=>i),n:0};for(let i=d.left.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[d.left[i],d.left[j]]=[d.left[j],d.left[i]];}if(key==='shayari'){const li=lines.length-1,at=d.left.indexOf(li);if(at>-1){d.left.splice(at,1);d.left.unshift(li);}}}
    const cnt=document.getElementById('rlCount');el.removeAttribute('data-rt');void el.offsetWidth;el.dataset.rt='d';
    if(d.left.length===0){revealWords(el,'Is tab ki saari baatein ho gayi, jaan 🖤 Ab koi doosra tab chuno, ya aage badho.');b.disabled=true;b.textContent='Saari baatein ho gayi 🖤';}
    else{const idx=d.left.pop();d.n++;el.dataset.rt=idx%8;revealWords(el,lines[idx]);
@@ -2510,7 +2526,7 @@ var panel=document.getElementById('panel');
 function confetti(n){var ch=['🖤','💗','✨','🥳','🌸','💜'];for(var i=0;i<(n||40);i++){var s=document.createElement('span');s.textContent=ch[i%ch.length];s.style.cssText='position:fixed;z-index:60;pointer-events:none;top:-30px;left:'+(Math.random()*100)+'vw;font-size:'+(16+Math.random()*16)+'px';document.body.appendChild(s);var a=s.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:'translate('+((Math.random()-.5)*160)+'px,'+(innerHeight+60)+'px) rotate('+(Math.random()*720)+'deg)',opacity:.9}],{duration:2200+Math.random()*1800,delay:Math.random()*600,easing:'ease-in'});a.onfinish=(function(el){return function(){el.remove();};})(s);}}
 function tick(){var el=document.getElementById('dayLive');if(!el)return;var d=Math.max(0,Date.now()-MET.getTime()),D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24,M=Math.floor(d/6e4)%60,S=Math.floor(d/1e3)%60;el.textContent=D+' din, '+H+' ghante, '+M+' min, '+S+' sec';var b=document.getElementById('bdayLive');if(b){var n=new Date(),t0=new Date(n.getFullYear(),n.getMonth(),n.getDate()),t=new Date(n.getFullYear(),BD[0],BD[1]);if(t<t0)t=new Date(n.getFullYear()+1,BD[0],BD[1]);var k=Math.round((t-t0)/864e5);b.textContent=k===0?'Aaj Riya ka birthday hai! 🎂🥳':'Riya ke birthday me '+k+' din baaki 🎂';}}
 setInterval(tick,1000);
-var HC=['110,205,255','170,238,70','255,170,80','255,110,190','255,226,90','255,90,90'];
+var HC=['110,205,255','170,238,70','255,170,80','255,110,190','255,226,90','236,232,255'];
 var Q=[
 {q:'Do chhoti si khidkiyan hain, jinke andar main roz jhaankta hoon aur har baar kuch naya dikhta hai: kabhi shararat, kabhi sapne, kabhi apna ghar. Inhe kholte ya band karte waqt tumhe khabar bhi nahi hoti, par mera poora din inhi se shuru hota hai. Ye khidkiyan kya hain?',h:['Ye hamesha jodi me chalti hain 👀','Inhi se tum bina bole mujhe daant bhi deti ho aur pyaar bhi 😏','Shayar inhe jheel aur sagar bolte hain','Hindi me ‘aa’ se shuru hota hai 🥺'],a:['aankhein','aankhen','ankhen','ankhein','aankhe','aankh','ankh','aakhein','aakhen','eyes'],s:'aankhein 👀'},
 {q:'Ek cheez tumhare paas hai jo tum mujhe haath me nahi de sakti, phir bhi uske liye main raat ko call kaatna nahi chahta. Din bhar ki thakaan wo ek pal me utaar deti hai, aur uske bina saare gaane adhoore hain. Bolo, kya hai wo?',h:['Tum ise saath leke hi paida hui thi','Raat ko isi ke liye main call nahi kaatta 🌙','Iske bina phone sirf ek chamakta patthar hai 📱','Hindi me ‘aa’ se shuru, English me ‘v’ se 🎶'],a:['awaaz','aawaz','avaaz','awaz','aavaz','avaz','aawaaz','voice'],s:'awaaz 🎶'},
@@ -2520,7 +2536,7 @@ var Q=[
 {q:'Duniya ki sabse chhoti kahani, jo sirf teen shabdon me poori ho jaati hai. Ye main tumhe aankhon se, gaano se aur dher saare emoji se bol chuka hoon, par jis din tum chaho, main ise roz bolunga, bina thake. Wo kaun se teen shabd hain?',h:['Pehla shabd sirf ek akshar: main 🙋','Doosra shabd har filmi gaane me aata hai','Teesra shabd: jise main Hindi me ‘tum’ bolta hoon 🫵','Teeno shabdon me kul 8 akshar hain, aur Valentine cards par sabse zyada yahi likha milta hai 🖤'],a:['iloveyou','loveyou','ilu','iluu','iloveu','ilvyou'],s:'I love you 🖤'}
 ];
 var W=['Hehe, close! Ek aur try karo jaan 🥺','Arre nahi baby, dimaag ki batti jalao 💡','Hint dekh lo na princess 😏','Uff, cute galti 🙈'],R=['Yesss! Meri smart Riya 🥳','Wah wah! Tum to genius ho betuu 🖤','Correct! Reward: ek virtual kiss 😘','Sahi pakda, jaan! 💗'];
-var qi=0,wr=0,state='ask',view=-1,draft='',hOpen={};
+var qi=0,wr=0,state='ask',view=-1,draft='',hOpen={},pq=-1;
 var LS_P='kassu_lock_qi_v1',LS_D='kassu_lock_done_v1',memD=false;
 function lsGet(k){return null;} /* bewajah save nahi: refresh/band karne par lock dobara shuru */
 function lsSet(k,v){}
@@ -2535,7 +2551,7 @@ function lkWords(el,t,base){if(!el)return;var w=t.split(' '),d=Math.min(38,1900/
 function draw(quiet){var box=document.getElementById('lockBox');if(!box)return;
  view=-1;if(!quiet)draft='';
  box.classList.remove('lk-out','lk-pop','lk-in','lk-final','lk-nudge');void box.offsetWidth;box.classList.add('lk-in');
- if(qi>=Q.length){box.classList.add('lk-final');box.innerHTML=lkRow(Q.length,-1)+'<div class="lk-big">\uD83D\uDD13</div><p class="lk-title"><strong>Secret unlock ho gaya!</strong></p><p class="lk-fin" id="lkFin"></p><div class="actions"><button class="btn" data-action="lkNext" type="button">Aage chalo \u2192</button></div>';setPassed();syncNext();lkWords(document.getElementById('lkFin'),'Riya, ye website sirf ek bahana thi. Mujhe bas tumse ye kehna tha: tum meri duniya ho, meri jaan. Reward: aaj call par ek tight virtual hug, aur momos treat mujhse maango haq se \uD83D\uDDA4\uD83E\uDD5F',900);setTimeout(function(){confetti(80);},500);if(navigator.vibrate){try{navigator.vibrate([60,40,60]);}catch(_){}}return;}
+ if(qi>=Q.length){box.classList.add('lk-final');pq=-1;box.innerHTML=lkNums(-1)+'<div class="lk-big">\uD83D\uDD13</div><p class="lk-title"><strong>Secret unlock ho gaya!</strong></p>'+finBox()+'<div class="actions"><button class="btn" data-action="lkNext" type="button">Aage chalo \u2192</button></div>';setPassed();syncNext();setTimeout(function(){confetti(80);},500);if(navigator.vibrate){try{navigator.vibrate([60,40,60]);}catch(_){}}return;}
  var q=Q[qi],h='';for(var k=0;k<4;k++)h+='<button class="hint" type="button" data-hint="'+k+'">Hint '+(k+1)+' \uD83D\uDD12</button>';
  box.innerHTML='<p class="lk-cnt"><strong>Paheli '+(qi+1)+' of '+Q.length+'</strong></p>'+lkRow(qi,qi)+'<div class="lock-q" id="lkQ"></div><div class="hint-row" style="--hc:'+HC[qi%HC.length]+'">'+h+'</div><textarea class="thoughts lock-in" id="lockIn" placeholder="Answer likho, jaan\u2026" aria-label="Answer"></textarea><div class="actions"><button class="btn" data-action="lockCheck" type="button">Unlock \uD83D\uDD13</button></div><div id="lockMsg" style="margin-top:8px;font-weight:600"></div>'+skipRow();
  var qe=document.getElementById('lkQ');if(quiet)qe.textContent=q.q;else lkWords(qe,q.q,0);state='ask';
@@ -2547,11 +2563,23 @@ function showReview(i){var box=document.getElementById('lockBox');if(!box||lockB
  box.innerHTML='<p class="lk-cnt"><strong>Paheli '+(i+1)+' of '+Q.length+' \u00B7 dobara padh rahi ho \uD83D\uDC97</strong></p>'+lkRow(qi,qi,i)+'<div class="lock-q" id="lkQ"></div><div class="lk-ans">Jawab: '+Q[i].s+'</div><div class="actions"><button class="btn secondary" data-action="lkBack" type="button">\u2190 Abhi wale sawaal pe wapas</button></div>';
  document.getElementById('lkQ').textContent=Q[i].q;}
 function lkBack(){if(view<0)return;view=-1;draw(true);}
-var FIN='Riya, ye website sirf ek bahana thi. Mujhe bas tumse ye kehna tha: tum meri duniya ho, meri jaan. Reward: aaj call par ek tight virtual hug, aur momos treat mujhse maango haq se \uD83D\uDDA4\uD83E\uDD5F';
+var FIN='Riya, <span class="mn-k1">ye website sirf ek bahana thi.</span> Mujhe bas tumse ye kehna tha: <span class="mn-k2">tum meri duniya ho, meri jaan.</span> Reward: aaj call par ek tight virtual hug, aur momos treat mujhse maango haq se \uD83D\uDDA4\uD83E\uDD5F';
+function finBox(){var r='<rect class="@" x="0" y="0" width="100%" height="100%" rx="18" pathLength="100"/>';
+ return '<div class="soft-note hl moon-note lk-red" style="--i:0"><i class="mn-star" style="top:10px;right:14px;--s:9px;--d:0s" aria-hidden="true"></i><i class="mn-star" style="top:34px;right:38px;--s:6px;--d:-1.3s" aria-hidden="true"></i><i class="mn-star" style="bottom:12px;right:20px;--s:7px;--d:-2.2s" aria-hidden="true"></i><svg class="mn-run" aria-hidden="true" focusable="false"><defs><linearGradient id="lkRingGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a6e"/><stop offset=".5" stop-color="#ff8f5c"/><stop offset="1" stop-color="#ff4fa0"/></linearGradient></defs>'+r.replace('@','rg')+r.replace('@','r1')+r.replace('@','r2')+r.replace('@','rf')+'</svg><span class="mn-text">'+FIN+'</span></div>';}
+function lkNums(cur){var h='<div class="lk-row">';for(var i=0;i<Q.length;i++){h+='<span class="lk on lk-tap'+(i===cur?' rv':'')+'" data-pq="'+i+'" role="button" tabindex="0" aria-label="Paheli '+(i+1)+' kholo">\uD83D\uDD13<b class="lk-n">'+(i+1)+'</b></span>';}return h+'</div>';}
+function drawPractice(i){var box=document.getElementById('lockBox');if(!box||lockBusy||i<0||i>=Q.length)return;pq=i;wr=0;view=-1;
+ box.classList.remove('lk-out','lk-pop','lk-in','lk-nudge','lk-final');void box.offsetWidth;box.classList.add('lk-in');
+ var q=Q[i],h='';for(var k=0;k<4;k++)h+='<button class="hint" type="button" data-hint="'+k+'">Hint '+(k+1)+' \uD83D\uDD12</button>';
+ box.innerHTML='<p class="lk-cnt"><strong>Paheli '+(i+1)+' of '+Q.length+' \u00B7 dobara khel rahi ho \uD83D\uDC97</strong></p>'+lkNums(i)+'<div class="lock-q" id="lkQ"></div><div class="hint-row" style="--hc:'+HC[i%HC.length]+'">'+h+'</div><textarea class="thoughts lock-in" id="lockIn" placeholder="Answer likho, jaan\u2026" aria-label="Answer"></textarea><div class="actions"><button class="btn" data-action="lockCheck" type="button">Unlock \uD83D\uDD13</button><button class="btn secondary" data-action="lkDone" type="button">\u2190 Saare sawaal</button></div><div id="lockMsg" style="margin-top:8px;font-weight:600"></div>';
+ lkWords(document.getElementById('lkQ'),q.q,0);
+ (hOpen[i]||[]).forEach(function(k){var hb=box.querySelector('[data-hint="'+k+'"]');if(hb){hb.textContent=q.h[k];hb.classList.add('open');hb.style.animation='none';}});}
+function checkPractice(){var inp=document.getElementById('lockIn'),m=document.getElementById('lockMsg');if(!inp||!m||lockBusy||pq<0)return;var u=nz(inp.value);if(!u)return;var i=pq,q=Q[i],bx=document.getElementById('lockBox');
+ if(q.a.some(function(v){return u===v||u.indexOf(v)>-1;})){lockBusy=true;m.textContent=R[i%R.length];inp.classList.add('lk-ok');if(bx){bx.classList.remove('lk-pop');void bx.offsetWidth;bx.classList.add('lk-pop');}if(navigator.vibrate){try{navigator.vibrate(40);}catch(_){}}confetti(24);setTimeout(function(){if(bx)bx.classList.add('lk-out');},1600);setTimeout(function(){lockBusy=false;pq=-1;drawDone();},1950);}
+ else{wr++;if(wr>=4){lockBusy=true;m.textContent='Koi baat nahi baby, answer hai: '+q.s+' \uD83E\uDD79';wr=0;setTimeout(function(){if(bx)bx.classList.add('lk-out');},2250);setTimeout(function(){lockBusy=false;pq=-1;drawDone();},2600);}else m.textContent=W[Math.floor(Math.random()*W.length)];}}
 function qaList(){var h='<div class="lk-qa">';for(var i=0;i<Q.length;i++){h+='<div class="lk-qa-i"><div class="lk-qa-n">Paheli '+(i+1)+'</div><div class="lk-qa-q">'+Q[i].q+'</div><div class="lk-ans">Jawab: '+Q[i].s+'</div></div>';}return h+'</div>';}
 function drawDone(){var box=document.getElementById('lockBox');if(!box)return;
- view=-1;box.classList.remove('lk-out','lk-pop','lk-in','lk-nudge');void box.offsetWidth;box.classList.add('lk-in','lk-final');
- box.innerHTML=lkRow(Q.length,-1)+'<div class="lk-big">\uD83D\uDD13</div><p class="lk-title"><strong>Ye lock tum pehle hi khol chuki ho</strong></p><p class="lk-fin">'+FIN+'</p>'+qaList()+'<div class="actions"><button class="btn" data-action="lkNext" type="button">Aage chalo \u2192</button><button class="btn secondary" data-action="lkReplay" type="button">Phir se khelo \uD83D\uDD01</button></div>';}
+ view=-1;pq=-1;box.classList.remove('lk-out','lk-pop','lk-in','lk-nudge');void box.offsetWidth;box.classList.add('lk-in','lk-final');
+ box.innerHTML=lkNums(-1)+'<div class="lk-big">\uD83D\uDD13</div><p class="lk-title"><strong>Ye lock tum pehle hi khol chuki ho</strong></p>'+finBox()+qaList()+'<div class="actions"><button class="btn" data-action="lkNext" type="button">Aage chalo \u2192</button><button class="btn secondary" data-action="lkReplay" type="button">Phir se khelo \uD83D\uDD01</button></div>';}
 function syncNext(){var n=document.getElementById('next');if(!n)return;if(document.getElementById('lockBox')&&!canSkip()){n.classList.add('lk-wait');n.textContent='\uD83D\uDD10 Pehle lock kholo';}else{n.classList.remove('lk-wait');if(n.textContent.indexOf('\uD83D\uDD10')===0)n.textContent='Aage \u2192';}}
 window.__lockNudge=function(){var box=document.getElementById('lockBox');if(!box)return;box.classList.remove('lk-nudge');void box.offsetWidth;box.classList.add('lk-nudge');
  var g=document.getElementById('lkGate');if(!g){g=document.createElement('div');g.id='lkGate';g.className='lk-gate';box.appendChild(g);}
@@ -2559,8 +2587,10 @@ window.__lockNudge=function(){var box=document.getElementById('lockBox');if(!box
  try{box.scrollIntoView({behavior:'smooth',block:'center'});}catch(_){}};
 document.addEventListener('click',function(e){var t=e.target&&e.target.closest?e.target.closest('[data-lk]'):null;if(!t)return;showReview(+t.getAttribute('data-lk'));});
 document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')return;var t=e.target&&e.target.closest?e.target.closest('[data-lk]'):null;if(!t)return;e.preventDefault();showReview(+t.getAttribute('data-lk'));});
+document.addEventListener('click',function(e){var t=e.target&&e.target.closest?e.target.closest('[data-pq]'):null;if(!t)return;drawPractice(+t.getAttribute('data-pq'));});
+document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')return;var t=e.target&&e.target.closest?e.target.closest('[data-pq]'):null;if(!t)return;e.preventDefault();drawPractice(+t.getAttribute('data-pq'));});
 var lockBusy=false;
-function check(){var inp=document.getElementById('lockIn'),m=document.getElementById('lockMsg');if(!inp||!m||lockBusy||!Q[qi])return;var u=nz(inp.value);if(!u)return;var q=Q[qi];
+function check(){if(pq>=0){checkPractice();return;}var inp=document.getElementById('lockIn'),m=document.getElementById('lockMsg');if(!inp||!m||lockBusy||!Q[qi])return;var u=nz(inp.value);if(!u)return;var q=Q[qi];
  if(q.a.some(function(v){return u===v||u.indexOf(v)>-1;})){lockBusy=true;m.textContent=R[qi%R.length];inp.classList.add('lk-ok');var cur=document.querySelector('#lockBox .lk.cur'),bx=document.getElementById('lockBox');if(cur){cur.classList.remove('cur');cur.classList.add('on','lk-click');cur.textContent='\uD83D\uDD13';}if(bx){bx.classList.remove('lk-pop');void bx.offsetWidth;bx.classList.add('lk-pop');}if(navigator.vibrate){try{navigator.vibrate(40);}catch(_){}}confetti(24);qi++;wr=0;lsSet(LS_P,String(qi));setTimeout(function(){if(bx)bx.classList.add('lk-out');},1600);setTimeout(function(){lockBusy=false;draw();},1950);}
  else{wr++;if(wr>=4){lockBusy=true;m.textContent='Koi baat nahi baby, answer hai: '+q.s+' 🥹 Chalo next!';qi++;wr=0;lsSet(LS_P,String(qi));var bx2=document.getElementById('lockBox');setTimeout(function(){if(bx2)bx2.classList.add('lk-out');},2250);setTimeout(function(){lockBusy=false;draw();},2600);}else m.textContent=W[Math.floor(Math.random()*W.length)];}}
 var noN=0;function runNo(e){var b=document.getElementById('noBtn');if(!b)return;if(e&&e.preventDefault)e.preventDefault();noN++;b.style.transform='translate('+((Math.random()-.5)*Math.min(240,innerWidth-140))+'px,'+((Math.random()-.5)*90)+'px)';var T=['No 🙈','Pakka? 🥺','Soch lo na 😭','Haan bol do 🥹','Bhaag gaya 😂'];b.textContent=T[Math.min(noN,T.length-1)];}
@@ -2576,19 +2606,20 @@ document.addEventListener('click',function(e){var b=e.target.closest?e.target.cl
  if(b.id==='noBtn'){e.preventDefault();return;}
  var st=b.getAttribute('data-st');if(st&&window.__setLines){window.__setLines(st);[].forEach.call(document.querySelectorAll('[data-st]'),function(x){x.classList.toggle('on',x===b);});var r=document.querySelector('[data-action="random"]');if(r){r.disabled=false;r.textContent='Ek aur pyaari baat 🌸';r.click();}return;}
  var op=b.getAttribute('data-opt');if(op!==null){pick(+op,b);return;}
- var hi=b.getAttribute('data-hint');if(hi!==null&&Q[qi]){if(b.classList.contains('open')||b.classList.contains('shake'))return;var qq=qi;b.classList.add('shake');setTimeout(function(){b.classList.remove('shake');if(Q[qq]){b.textContent=Q[qq].h[+hi];b.classList.add('open');(hOpen[qq]=hOpen[qq]||[]).push(+hi);}},330);return;}
+ var hi=b.getAttribute('data-hint'),cq=(pq>=0?pq:qi);if(hi!==null&&Q[cq]){if(b.classList.contains('open')||b.classList.contains('shake'))return;var qq=cq;b.classList.add('shake');setTimeout(function(){b.classList.remove('shake');if(Q[qq]){b.textContent=Q[qq].h[+hi];b.classList.add('open');(hOpen[qq]=hOpen[qq]||[]).push(+hi);}},330);return;}
  if(b.getAttribute('data-cpn')){b.classList.add('used');b.textContent='✅ Redeemed — screenshot bhej do baby 🥰';confetti(14);return;}
  var ow=b.getAttribute('data-ow');if(ow!==null){var t=document.getElementById('owText');if(t){t.hidden=false;t.textContent=OW[+ow][1];}return;}
  var a=b.getAttribute('data-action');
  if(a==='lockCheck')check();
   if(a==='lkBack')lkBack();
   if(a==='lkNext'||a==='lkSkip'){var nb=document.getElementById('next');if(nb)nb.click();}
-  if(a==='lkReplay'){qi=0;wr=0;hOpen={};lsSet(LS_P,'0');draw();}
+  if(a==='lkDone'&&!lockBusy){pq=-1;drawDone();}
+  if(a==='lkReplay'){pq=-1;qi=0;wr=0;hOpen={};lsSet(LS_P,'0');draw();}
  if(a==='waSend'){var t2=document.getElementById('thoughts'),v=(t2&&t2.value||'').trim();window.goWA(waUrl('Mujhe kuch kehna hai 💭\n\n'+(v||'Bas tumhe yaad kar rahi thi 🖤')));}
  if(a==='propYes'){var pb=document.getElementById('propBtns'),pr=document.getElementById('propRes');if(pb)pb.hidden=true;if(pr){pr.hidden=false;pr.scrollIntoView({behavior:'smooth',block:'center'});}confetti(90);if(navigator.vibrate){try{navigator.vibrate([60,40,60]);}catch(_){}}}
 });
 document.addEventListener('keydown',function(e){if(e.target&&e.target.id==='lockIn'&&e.key==='Enter'){e.preventDefault();check();}});
-function init(){if(document.getElementById('lockBox')){wr=0;view=-1;draft='';hOpen={};
+function init(){if(document.getElementById('lockBox')){wr=0;view=-1;pq=-1;draft='';hOpen={};
   if(passed()){qi=Q.length;drawDone();}else{draw();}}
  syncNext();tick();}
 new MutationObserver(init).observe(panel,{childList:true});init();
