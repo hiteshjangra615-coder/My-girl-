@@ -1625,6 +1625,39 @@ body.prop-wait .nav{visibility:hidden}
 .soft-note.moon-note.lk-red .mn-k2{background:linear-gradient(90deg,#ffd27a 0%,#ff9aa8 50%,#ffffff 100%) no-repeat 0 100%/0% 2px}
 @keyframes lkLoopA{0%,5%{stroke-dashoffset:0;opacity:0;color:#ffffff}9%{opacity:1;color:#ffe27a}45%{stroke-dashoffset:-32;opacity:1;color:#ffe27a}50%{stroke-dashoffset:-32;opacity:.35;color:#ffffff}55%{stroke-dashoffset:-32;opacity:1;color:#ffffff}91%{opacity:1;color:#ffffff}95%,100%{stroke-dashoffset:0;opacity:0;color:#ffffff}}
 @keyframes lkLoopB{0%,5%{stroke-dashoffset:-82;opacity:0;color:#ffb36b}9%{opacity:1;color:#ffb0d6}45%{stroke-dashoffset:-50;opacity:1;color:#ffb0d6}50%{stroke-dashoffset:-50;opacity:.35;color:#ffb36b}55%{stroke-dashoffset:-50;opacity:1;color:#ffb36b}91%{opacity:1;color:#ffb36b}95%,100%{stroke-dashoffset:-82;opacity:0;color:#ffb36b}}
+
+/* ===== CHAPTER 6: "Ek aur pyaari baat" ab clearly ek pressable BUTTON hai (3D key + glow + press-down) ===== */
+.actions [data-action="random"]{flex:1 1 100%;min-height:50px;padding:13px 24px;font-size:16.5px;cursor:pointer;user-select:none;-webkit-user-select:none;
+ border:1.5px solid rgba(255,235,250,.95)!important;
+ background:linear-gradient(180deg,#ff9bd6 0%,#ff5fb8 48%,#b86bff 100%)!important;
+ box-shadow:0 5px 0 #8a3fb8,0 10px 22px rgba(255,120,210,.45),inset 0 1px 0 rgba(255,255,255,.55)!important;
+ transform:translateY(0);transition:transform .12s ease,box-shadow .12s ease,filter .2s ease;
+ animation:rndPulse 2.2s ease-in-out infinite}
+.actions [data-action="random"]:hover{filter:brightness(1.08)}
+.actions [data-action="random"]:active{transform:translateY(5px);box-shadow:0 0 0 #8a3fb8,0 3px 10px rgba(255,120,210,.35),inset 0 1px 0 rgba(255,255,255,.4)!important;animation:none}
+.actions [data-action="random"]:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.actions [data-action="random"]:disabled{animation:none;filter:grayscale(.5) brightness(.85);box-shadow:0 2px 0 #6b2f90!important;transform:translateY(3px);cursor:default}
+@keyframes rndPulse{0%,100%{box-shadow:0 5px 0 #8a3fb8,0 10px 22px rgba(255,120,210,.40),0 0 0 0 rgba(255,150,225,0),inset 0 1px 0 rgba(255,255,255,.55)}50%{box-shadow:0 5px 0 #8a3fb8,0 10px 26px rgba(255,120,210,.60),0 0 0 7px rgba(255,150,225,.22),inset 0 1px 0 rgba(255,255,255,.55)}}
+@media(prefers-reduced-motion:reduce){.actions [data-action="random"]{animation:none}}
+
+/* song box: baaki gifts par screen ke bahar (music chalta rahe), chapter badalte hi stopSong() band karta hai */
+#songCard.song-away{position:fixed!important;left:-9999px!important;top:0!important;width:320px!important;max-width:90vw;pointer-events:none!important;animation:none!important}
+/* chapter 6 button: halka upar-neeche hilna + arrow */
+.actions [data-action="random"]{animation:rndBob 1.7s ease-in-out infinite,rndPulse 2.2s ease-in-out infinite}
+.actions [data-action="random"]::after{content:"\2192";display:inline-block;margin-left:10px;font-weight:800;animation:rndArrow 1.3s ease-in-out infinite}
+.actions [data-action="random"]:active{animation:none}
+.actions [data-action="random"]:disabled{animation:none}
+.actions [data-action="random"]:disabled::after{animation:none;opacity:.5}
+@keyframes rndBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes rndArrow{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+@media(prefers-reduced-motion:reduce){.actions [data-action="random"],.actions [data-action="random"]::after{animation:none}}
+
+/* ===== cover: moon bubble ab upar wali "psst" lines ko dhakta/blur nahi karta ===== */
+.cover>.cover-psst{z-index:1}
+.cover>.moon-wrap{z-index:5}
+.moon-bubble,.moon-bubble.hint{z-index:6!important;background:#fff0fa!important;color:#7a2f78!important;text-shadow:none!important;border:0!important;
+ bottom:calc(100% - 30px)!important;box-shadow:0 6px 20px rgba(60,10,100,.45)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.moon-bubble::after{border-top-color:#fff0fa!important}
 </style>
 </head>
 <body>
@@ -2184,7 +2217,7 @@ prev.addEventListener('click',()=>go(index-1));next.addEventListener('click',()=
 panel.addEventListener('click',e=>{
  const b=e.target.closest('button');if(!b)return;
  if(b.dataset.mood){const el=document.getElementById('moodMessage');showTouch(el,moodText[b.dataset.mood],b.dataset.mood);setMoodFx(b.dataset.mood==='khush'?'happy':b.dataset.mood==='miss'?'alone':b.dataset.mood);const bm=document.getElementById('backToMoods');if(bm)bm.hidden=false;glideTo(el,'center');return;}
- if(b.dataset.gift!==undefined){const n=Number(b.dataset.gift), el=document.getElementById('giftMessage');showTouch(el,gifts[n],'g'+n);if(window.__giftExtra)window.__giftExtra(n);b.classList.add('opened');b.querySelector('small').textContent='♥ opened with care';setMoodFx('g'+n);if(n===7){showSong();const st=document.createElement('div');st.className='shoot-open';document.body.appendChild(st);setTimeout(()=>st.remove(),2800);}const bk=document.getElementById('backToGifts');if(bk)bk.hidden=false;glideTo(el,n===7?'start':'center');return;}
+ if(b.dataset.gift!==undefined){const n=Number(b.dataset.gift), el=document.getElementById('giftMessage');showTouch(el,gifts[n],'g'+n);if(window.__giftExtra)window.__giftExtra(n);b.classList.add('opened');b.querySelector('small').textContent='♥ opened with care';setMoodFx('g'+n);{const sc=document.getElementById('songCard');if(sc)sc.classList.toggle('song-away',n!==7);}if(n===7){showSong();const st=document.createElement('div');st.className='shoot-open';document.body.appendChild(st);setTimeout(()=>st.remove(),2800);}const bk=document.getElementById('backToGifts');if(bk)bk.hidden=false;glideTo(el,n===7?'start':'center');return;}
  if(b.dataset.action==='backToGifts'){const g=panel.querySelector('.gift-grid');if(g)glideTo(g,'start');return;}
  if(b.dataset.action==='backToMoods'){const g=panel.querySelector('.mood-grid');if(g)glideTo(g,'start');return;}
  if(b.dataset.action==='openLetter'){startLetter();return;}
